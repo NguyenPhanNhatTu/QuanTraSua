@@ -1,0 +1,66 @@
+﻿@model Doan1.Models.ChiNhanh
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .table {
+        background-color: aliceblue;
+    }
+</style>
+<div class="jumbotron"></div>
+
+<div class="jumbotron">
+    <h2 style="text-align: center" class="text-danger">Thêm Chi Nhánh</h2>
+</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    string err = (string)Session["Check"];
+    if (err != null)
+    {
+        <lable style=" text-align: center" class="text-danger">@err</lable>
+        Session.Remove("Check");
+    }
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Mã Chi Nhánh</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaChiNhanh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaChiNhanh, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Tên Chi Nhánh</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenChiNhanh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenChiNhanh, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Địa Chỉ</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-success" />
+                <input type="button" id="back" value="Back" class="btn btn-info" onclick="location.href='/ChiNhanhs/Index'" />
+            </div>
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

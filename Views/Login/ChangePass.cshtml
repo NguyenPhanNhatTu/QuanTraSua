@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "ChangePass";
+    Layout = "~/Views/_LayoutPageLogin.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Material Login Form a Responsive Widget Template :: w3layouts</title>
+    <!-- meta tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="Art Sign Up Form Responsive Widget, Audio and Video players, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates,
+		Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
+    <!-- /meta tags -->
+    <!-- custom style sheet -->
+    <link href="css/stylelogin.css" rel="stylesheet" type="text/css" />
+    <!-- /custom style sheet -->
+    <!-- fontawesome css -->
+    <link href="css/fontawesome-all.css" rel="stylesheet" />
+    <!-- /fontawesome css -->
+    <!-- google fonts-->
+    <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+    <!-- /google fonts-->
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+</head>
+
+
+<body>
+    <h1>Change Password</h1>
+    <div class=" w3l-login-form">
+        <h2>Change Password Here</h2>
+        <form action="ChangePass" method="POST">
+
+            <div class=" w3l-form-group">
+                <label>Username:</label>
+                <div class="group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="Username" class="form-control" placeholder="Username" required="required" />
+                </div>
+            </div>
+            <div class=" w3l-form-group">
+                <label> Old Password:</label>
+                <div class="group">
+                    <i class="fas fa-unlock"></i>
+                    <input type="password" name="OldPass" class="form-control" placeholder="OldPassword" required="required" />
+                </div>
+            </div>
+            <div class=" w3l-form-group">
+                <label> New Password:</label>
+                <div class="group">
+                    <i class="fas fa-unlock"></i>
+                    <input type="password" name="NewPass" class="form-control" placeholder="NewPassword" required="required" />
+                </div>
+            </div>
+            <button type="submit" id="changepass">Confirm</button>
+
+        </form>
+    </div>
+    <footer>
+        <p class="copyright-agileinfo"> &copy; 2018 Material Login Form. All Rights Reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+    </footer>
+
+</body>
+
+</html>
+
+
+

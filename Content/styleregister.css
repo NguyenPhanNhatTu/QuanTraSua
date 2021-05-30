@@ -1,0 +1,625 @@
+/*--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+--*/
+/*-- reset --*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, dl, dt, dd, ol, nav ul, nav li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	object-fit: cover;
+	z-index: -1;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+ol, ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+	blockquote:before, blockquote:after, q:before, q:after {
+		content: '';
+		content: none;
+	}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/*-- start editing from here --*/
+a {
+	text-decoration: none;
+}
+
+.txt-rt {
+	text-align: right;
+}
+/* text align right */
+.txt-lt {
+	text-align: left;
+}
+/* text align left */
+.txt-center {
+	text-align: center;
+}
+/* text align center */
+.float-rt {
+	float: right;
+}
+/* float right */
+.float-lt {
+	float: left;
+}
+/* float left */
+.clear {
+	clear: both;
+}
+/* clear float */
+.pos-relative {
+	position: relative;
+}
+/* Position Relative */
+.pos-absolute {
+	position: absolute;
+}
+/* Position Absolute */
+.vertical-base {
+	vertical-align: baseline;
+}
+/* vertical align baseline */
+.vertical-top {
+	vertical-align: top;
+}
+/* vertical align top */
+nav.vertical ul li {
+	display: block;
+}
+/* vertical menu */
+nav.horizontal ul li {
+	display: inline-block;
+}
+/* horizontal menu */
+img {
+	max-width: 100%;
+}
+/*-- end reset --*/
+body {
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+h1 {
+	font-size: 3.5em;
+	text-align: center;
+	color: #fff;
+	font-weight: 600;
+	letter-spacing: 5px;
+	padding: 1em 0;
+	font-family: 'Poiret One', cursive;
+}
+
+.center-container {
+	padding: 0;
+	background: rgba(0, 0, 0, 0.61);
+}
+/*-- main --*/
+.main-agileinfo {
+	width: 35%;
+	margin: 0 auto;
+	background: url(../images/1.jpg) no-repeat center;
+	background-size: cover;
+}
+
+.agileits-top {
+	padding: 3em;
+	-webkit-box-shadow: 1px 4px 23px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 4px 23px 0px rgba(0,0,0,0.75);
+	box-shadow: 1px 4px 23px 0px rgba(0,0,0,0.75);
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+	font-size: 1em;
+	width: 94.5%;
+	display: block;
+	border: none;
+	padding: 0.8em;
+	border-bottom: 1px solid #fff;
+	-webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+	transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+	background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #fff 4%);
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #fff 4%);
+	background-position: -800px 0;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	color: #fff;
+	font-family: 'Josefin Sans', sans-serif;
+	letter-spacing: 1px;
+}
+
+input.email, input.text.w3lpass {
+	margin: 2em 0;
+}
+
+.text:focus, .text:valid {
+	box-shadow: none;
+	outline: none;
+	background-position: 0 0;
+}
+
+	.text:focus::-webkit-input-placeholder, .text:valid::-webkit-input-placeholder {
+		color: rgba(255, 255, 255, 0.7);
+		font-size: .9em;
+		-webkit-transform: translateY(-30px);
+		-moz-transform: translateY(-30px);
+		-o-transform: translateY(-30px);
+		-ms-transform: translateY(-30px);
+		transform: translateY(-30px);
+		visibility: visible !important;
+	}
+
+::-webkit-input-placeholder {
+	color: #fff;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+	color: #fff;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+	color: #fff;
+}
+
+:-ms-input-placeholder {
+	color: #fff;
+}
+
+input[type="submit"] {
+	font-size: .9em;
+	color: #fff;
+	background: #f3046f;
+	outline: none;
+	border: none;
+	border-bottom: 1px solid #fff;
+	cursor: pointer;
+	padding: .9em;
+	-webkit-appearance: none;
+	width: 44%;
+	display: inherit;
+	margin: 3em auto 1em;
+	letter-spacing: 1px;
+	-webkit-transition: .5s all;
+	-moz-transition: .5s all;
+	-o-transition: .5s all;
+	-ms-transition: .5s all;
+	transition: .5s all;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+	input[type="submit"]:hover {
+		-moz-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.58);
+		box-shadow: 0px -1px 3px 0 rgba(0, 0, 0, 0.58);
+		-webkit-transition: .5s all;
+		-moz-transition: .5s all;
+		-o-transition: .5s all;
+		-ms-transition: .5s all;
+		transition: .5s all;
+		border-color: #f3046f;
+		background: transparent;
+	}
+
+.agileits-top p {
+	font-size: 1em;
+	color: #fff;
+	text-align: center;
+	letter-spacing: 1px;
+	font-weight: 300;
+}
+
+	.agileits-top p a {
+		color: #fff;
+		-webkit-transition: .5s all;
+		-moz-transition: .5s all;
+		transition: .5s all;
+		font-weight: 400;
+	}
+
+		.agileits-top p a:hover {
+			color: #ff6262;
+		}
+/*-- //main --*/
+/*-- checkbox --*/
+.wthree-text label {
+	font-size: 1em;
+	color: #fff;
+	cursor: pointer;
+	position: relative;
+}
+
+.wthree-text {
+	text-align: center;
+}
+
+input.checkbox {
+	background: #f3046f;
+	cursor: pointer;
+	width: 1.2em;
+	height: 1.2em;
+}
+
+	input.checkbox:before {
+		content: "";
+		position: absolute;
+		width: 1.2em;
+		height: 1.2em;
+		background: inherit;
+		cursor: pointer;
+	}
+
+	input.checkbox:after {
+		content: "";
+		position: absolute;
+		top: 0px;
+		left: 4px;
+		z-index: 1;
+		width: 1em;
+		height: 1em;
+		border: 1px solid #fff;
+		-webkit-transition: .4s ease-in-out;
+		-moz-transition: .4s ease-in-out;
+		-o-transition: .4s ease-in-out;
+		transition: .4s ease-in-out;
+	}
+
+	input.checkbox:checked:after {
+		-webkit-transform: rotate(-45deg);
+		-moz-transform: rotate(-45deg);
+		-o-transform: rotate(-45deg);
+		-ms-transform: rotate(-45deg);
+		transform: rotate(-45deg);
+		height: .5rem;
+		border-color: #fff;
+		border-top-color: transparent;
+		border-right-color: transparent;
+	}
+
+.anim input.checkbox:checked:after {
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	height: .5rem;
+	border-color: transparent;
+	border-right-color: transparent;
+	animation: .4s rippling .4s ease;
+	animation-fill-mode: forwards;
+}
+
+@keyframes rippling {
+	50% {
+		border-left-color: #fff;
+	}
+
+	100% {
+		border-bottom-color: #fff;
+		border-left-color: #fff;
+	}
+}
+/*-- //checkbox --*/
+/*-- copyright --*/
+.w3copyright-agile {
+	padding: 7em 0 22.45em;
+	text-align: center;
+}
+
+	.w3copyright-agile h2 {
+		font-size: 1em;
+		color: #fff;
+		letter-spacing: 2px;
+		font-weight: 600;
+	}
+
+		.w3copyright-agile h2 a {
+			color: #f3046f;
+			transition: 0.5s all;
+			-webkit-transition: 0.5s all;
+			-moz-transition: 0.5s all;
+			-o-transition: 0.5s all;
+			-ms-transition: 0.5s all;
+		}
+
+			.w3copyright-agile h2 a:hover {
+				color: #000;
+			}
+/*-- //copyright --*/
+
+/*--responsive--*/
+
+@media(max-width: 1680px) {
+	.w3copyright-agile {
+		padding: 7em 0 13em;
+	}
+}
+
+@media(max-width: 1600px) {
+	h1 {
+		padding: .8em 0 .9em;
+	}
+
+	.w3copyright-agile {
+		padding: 2.95em 0;
+	}
+
+	.w3copyright-agile {
+		padding: 3em 0 10.5em;
+	}
+
+	.w3copyright-agile {
+		padding: 5em 0 6.75em;
+	}
+}
+
+@media(max-width: 1440px) {
+	h1 {
+		padding: .5em 0;
+		font-size: 3em;
+	}
+
+	.main-agileinfo {
+		width: 38%;
+	}
+
+	.w3copyright-agile {
+		padding: 3em 0;
+	}
+
+	input[type="text"], input[type="email"], input[type="password"] {
+		width: 94%;
+	}
+}
+
+@media(max-width: 1366px) {
+}
+
+@media(max-width: 1280px) {
+	h1 {
+		font-size: 2.8em;
+		letter-spacing: 4px;
+	}
+
+	.main-agileinfo {
+		width: 42%;
+	}
+}
+
+@media(max-width: 1080px) {
+	.main-agileinfo {
+		width: 49%;
+	}
+}
+
+@media(max-width: 1050px) {
+	.main-agileinfo {
+		width: 51%;
+	}
+}
+
+@media(max-width: 1024px) {
+	.main-agileinfo {
+		width: 52%;
+	}
+}
+
+@media(max-width: 991px) {
+	.main-agileinfo {
+		width: 54%;
+	}
+}
+
+@media(max-width: 900px) {
+	.main-agileinfo {
+		width: 60%;
+	}
+}
+
+@media(max-width: 800px) {
+	h1 {
+		font-size: 2.7em;
+		letter-spacing: 3px;
+	}
+
+	.main-agileinfo {
+		width: 66%;
+	}
+}
+
+@media(max-width: 768px) {
+	h1 {
+		padding: 1em 0;
+	}
+
+	.w3copyright-agile {
+		padding: 4em 0 11em;
+	}
+
+	input[type="text"], input[type="email"], input[type="password"] {
+		width: 93.5%;
+	}
+}
+
+@media(max-width: 736px) {
+	h1 {
+		padding: .5em 0;
+	}
+
+	.w3copyright-agile {
+		padding: 2.5em 0;
+	}
+
+	.main-agileinfo {
+		width: 68%;
+	}
+}
+
+@media(max-width: 667px) {
+	h1 {
+		font-size: 2.5em;
+	}
+
+	.main-agileinfo {
+		width: 74%;
+	}
+}
+
+@media(max-width: 640px) {
+	.main-agileinfo {
+		width: 79%;
+	}
+}
+
+@media(max-width: 600px) {
+	input[type="text"], input[type="email"], input[type="password"] {
+		width: 93%;
+	}
+
+	.w3copyright-agile h2 {
+		line-height: 2;
+	}
+
+	.w3copyright-agile {
+		padding: 2em 0;
+	}
+}
+
+@media(max-width: 568px) {
+	.agileits-top {
+		padding: 2em;
+	}
+}
+
+@media(max-width: 480px) {
+	h1 {
+		font-size: 2em;
+	}
+
+	input[type="text"], input[type="email"], input[type="password"] {
+		font-size: .9em;
+	}
+
+	.wthree-text label {
+		font-size: .9em;
+	}
+
+	input[type="submit"] {
+		font-size: .8em;
+	}
+
+	.w3copyright-agile {
+		padding: 1.5em 0;
+	}
+}
+
+@media(max-width: 440px) {
+	.main-agileinfo {
+		width: 85%;
+	}
+
+	input[type="text"], input[type="email"], input[type="password"] {
+		width: 92%;
+	}
+
+	.w3copyright-agile h2 {
+		letter-spacing: 1px;
+	}
+}
+
+@media(max-width: 414px) {
+	h1 {
+		letter-spacing: 2px;
+		padding: .8em 0;
+	}
+
+	.w3copyright-agile {
+		padding: 1.95em 0;
+	}
+
+	input[type="submit"] {
+		width: 52%;
+	}
+}
+
+@media(max-width: 384px) {
+	h1 {
+		font-size: 1.8em;
+		padding: .6em 0;
+	}
+
+	.w3copyright-agile h2 {
+		line-height: 1.8;
+		font-size: .9em;
+	}
+
+	.w3copyright-agile {
+		padding: 1.3em 0;
+	}
+
+	input[type="text"], input[type="email"], input[type="password"] {
+		width: 90%;
+	}
+}
+
+@media(max-width: 375px) {
+	input.email, input.text.w3lpass {
+		margin: 1.77em 0;
+	}
+}
+
+@media(max-width: 320px) {
+	h1 {
+		font-size: 1.45em;
+	}
+
+	.agileits-top {
+		padding: 1em;
+	}
+
+	.main-agileinfo {
+		width: 88%;
+	}
+
+	input.email, input.text.w3lpass {
+		margin: 1.4em 0;
+	}
+
+	input[type="text"], input[type="email"], input[type="password"] {
+		width: 91%;
+		font-size: .85em;
+	}
+
+	.wthree-text label {
+		font-size: .85em;
+	}
+
+	input.checkbox:after {
+		top: -2px;
+	}
+}
+/*--//responsive--*/

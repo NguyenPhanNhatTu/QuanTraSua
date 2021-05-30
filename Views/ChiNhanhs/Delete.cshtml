@@ -1,0 +1,67 @@
+﻿@model Doan1.Models.ChiNhanh
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .table {
+        background-color: aliceblue;
+    }
+</style>
+<div class="jumbotron"></div>
+
+<div class="jumbotron">
+    <h2 style="text-align: center" class="text-danger">Xóa Chi Nhánh</h2>
+</div>
+<div>
+    <h4>Chi Nhánh</h4>
+    <hr />
+    <div class="form-group">
+        <label class="control-label col-md-2 "> <b>Mã Chi Nhánh</b></label>
+        <div class="col-md-10">
+            @Html.ValidationMessageFor(model => model.MaChiNhanh, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.MaChiNhanh)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2 "> <b>Tên Chi Nhánh</b></label>
+        <div class="col-md-10">
+            @Html.ValidationMessageFor(model => model.TenChiNhanh, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.TenChiNhanh)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2 "> <b>Địa Chỉ</b></label>
+        <div class="col-md-10">
+            @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.DiaChi)
+        </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="delete" value="Delete" class="btn btn-danger" />
+                <input type="button" id="back" value="Back" class="btn btn-info" onclick="location.href='/ChiNhanhs/Index'" />
+            </div>
+        </div>
+    }
+</div>

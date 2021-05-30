@@ -1,0 +1,92 @@
+﻿@model Doan1.Models.NhanVien
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div style="padding-top:10em"></div>
+<div class="jumbotron">
+    <h2 style=" text-align: center" class="text-info">Thêm Nhân Viên</h2>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    string err = (string)Session["Check"];
+    if (err != null)
+    {
+        <lable style=" text-align: center" class="text-danger">@err</lable>
+        Session.Remove("Check");
+    }
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Mã Nhân Viên</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaNV, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaNV, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Tên Nhân Viên</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenNV, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenNV, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Địa Chỉ</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Email</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group  ">
+            <label class="control-label col-md-2">Số Điện Thoại</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group ">
+            <label class="control-label col-md-2">Chi Nhánh</label>
+            <div class="col-md-10">
+                @Html.DropDownList("MaChiNhanh", null, htmlAttributes: new { @class = "form-control-lg" })
+                @Html.ValidationMessageFor(model => model.MaChiNhanh, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Mật Khẩu</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="add" value="Create" class="btn btn-success" />
+                <input type="button" id="back" value="Back" class="btn btn-info" onclick="location.href='/NhanViens/Index'" />
+            </div>
+        </div>
+
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

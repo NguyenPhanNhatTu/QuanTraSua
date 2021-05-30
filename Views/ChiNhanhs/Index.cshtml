@@ -1,0 +1,102 @@
+﻿@model PagedList.IPagedList<Doan1.Models.ChiNhanh>
+@using Doan1.Models;
+@using System.Linq;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .table {
+        background-color: aliceblue;
+    }
+</style>
+
+<div class="jumbotron"></div>
+
+<div class="jumbotron">
+    <h2 style="text-align: center" class="text-danger">Thông Tin Chi Nhánh</h2>
+</div>
+@using (Html.BeginForm("Index", "ChiNhanhs", FormMethod.Get))
+{
+    <p>
+        Tên Chi Nhánh: @Html.TextBox("SearchString", (string)ViewBag.searchValue) <input type="submit" value="Tìm kiếm" /> <input type="button" onclick="location.href = '/ChiNhanhs/Index'" name="Reset" value="Mặc định" />
+        @Html.Hidden("page", (object)ViewBag.page)
+        @Html.Hidden("sortProperty", (object)ViewBag.sortProperty)
+        @Html.Hidden("sortOrder", (object)ViewBag.sortOrder)
+        @Html.Hidden("size", (object)ViewBag.pageSize)
+    </p>
+}
+<p>
+    <input type="button" class="btn btn-danger" onclick="location.href = '/ChiNhanhs/Create'" value="Thêm Chi Nhánh mới" />
+</p>
+
+
+<table class="table">
+
+    @Html.Raw(ViewBag.Headings)
+
+
+    <tr style="background-color:Highlight; text-align:center">
+
+        <th>
+            <div>Mã Chi Nhánh</div>
+        </th>
+
+        <th>
+            <div>Tên Chi Nhánh</div>
+        </th>
+        <th>
+            <div>Địa Chỉ</div>
+        </th>
+        <th></th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaChiNhanh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenChiNhanh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MaChiNhanh }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MaChiNhanh }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.MaChiNhanh })
+            </td>
+        </tr>
+    }
+</table>
+
+<!-- Thêm mã phân trang -->
+<br />
+
+    <div style="text-align: center">
+        @using (Html.BeginForm("Index", "ChiNhanhs", FormMethod.Get))
+        {
+            <p>
+                Kích thước trang: @Html.DropDownList("size", (List<SelectListItem>)ViewBag.size, new { @onchange = "this.form.submit();" })
+            </p>
+
+            @Html.Hidden("page", (object)ViewBag.page)
+            @Html.Hidden("sortProperty", (object)ViewBag.sortProperty)
+            @Html.Hidden("sortOrder", (object)ViewBag.sortOrder)
+            @Html.Hidden("searchString", (object)ViewBag.searchValue)
+        }
+    </div>
+    <div  style="text-align: center" >
+        <br />
+        Trang: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    </div>
+
+    <div  style="text-align: center">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, size = ViewBag.currentSize, sortProperty = ViewBag.sortProperty, sortOrder = ViewBag.SortOrder, searchString = ViewBag.searchValue }))
+    </div>
+<!-- Kết thúc -->

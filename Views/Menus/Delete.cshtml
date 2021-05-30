@@ -1,0 +1,92 @@
+﻿@model Doan1.Models.Menu
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron"></div>
+<div class="jumbotron">
+    <h2 style=" text-align: center" class="text-danger">Xóa Sản Phẩm</h2>
+</div>
+<div>
+    <h4>Menu</h4>
+    <hr />
+    <div class="form-group">
+        <label class="control-label col-md-2 "> <b>Mã Món</b></label>
+        <div class="col-md-10">
+            @Html.ValidationMessageFor(model => model.MaMon, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.MaMon)
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2"> <b>Tên Món</b></label>
+        <div class="col-md-10">
+            @Html.ValidationMessageFor(model => model.TenMon, "", new { @class = "text-danger" })
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.TenMon)
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2"> <b>Loại</b></label>
+        <div class="col-md-10">
+            @Html.ValidationMessageFor(model => model.Loai, "", new { @class = "text-danger" })
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Loai)
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2"> <b>Giá Tiền</b></label>
+        <div class="col-md-10">
+            @Html.ValidationMessageFor(model => model.GiaTien, "", new { @class = "text-danger" })
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.GiaTien)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2"> <b>Tên Chi Nhánh</b></label>
+        <div class="col-md-10">
+            @Html.ValidationMessageFor(model => model.ChiNhanh.TenChiNhanh, "", new { @class = "text-danger" })
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.ChiNhanh.TenChiNhanh)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2"> <b>Ảnh Minh Họa</b></label>
+        <div class="col-md-10">
+            @Html.ValidationMessageFor(model => model.AnhMinhHoa, "", new { @class = "text-danger" })
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.AnhMinhHoa)
+        </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="delete" value="Delete" class="btn btn-danger" />
+                <input type="button" id="back" value="Back" class="btn btn-info" onclick="location.href='/Menus/Index'" />
+            </div>
+        </div>
+    }
+
+
+
+</div>

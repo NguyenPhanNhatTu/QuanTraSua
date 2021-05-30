@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="96a34bc8fa984a85a3390ec7c1962d8c" Name="Diagram1">
+        <EntityTypeShape EntityType="QuanLyCuaHangTraSuaModel.ChiNhanh" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyCuaHangTraSuaModel.ChiTietHoaDon" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyCuaHangTraSuaModel.HoaDon" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyCuaHangTraSuaModel.KhachHang" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyCuaHangTraSuaModel.LienHe" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyCuaHangTraSuaModel.Menu" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyCuaHangTraSuaModel.NhanVien" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyCuaHangTraSuaModel.QuanLy" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyCuaHangTraSuaModel.sysdiagram" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="QuanLyCuaHangTraSuaModel.FK_HoaDon_ChiNhanh" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyCuaHangTraSuaModel.FK_Menu_ChiNhanh" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyCuaHangTraSuaModel.FK_NhanVien_ChiNhanh" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyCuaHangTraSuaModel.xoachinhanh_constraint" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyCuaHangTraSuaModel.xoachinhanh_constraint1" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyCuaHangTraSuaModel.chitiet_constraint" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyCuaHangTraSuaModel.FK_ChiTietHoaDon_HoaDon" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyCuaHangTraSuaModel.FK_ChiTietHoaDon_Menu" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyCuaHangTraSuaModel.FK_HoaDon_KhachHang" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyCuaHangTraSuaModel.FK_HoaDon_NhanVien" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyCuaHangTraSuaModel.hoadon_constrain1" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyCuaHangTraSuaModel.hoadon_constrain2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

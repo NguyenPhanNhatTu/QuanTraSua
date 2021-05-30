@@ -1,0 +1,117 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/stylelogin.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome-all.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div>
+        @RenderBody()
+    </div>
+    <!-- ############################ Quên mật khẩu ############################## -->
+    <div class="modal fade" id="ForgotPass">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Quên mật khẩu</h4>
+                </div>
+                <form method="post" action="/Login/ForgotPass" id="Forgotpass">
+                    <div class="modal-body">
+                        <div id="err_login"></div>
+                        <div id="login_here">
+                            <label>Số điện thoại : </label>
+                            <input type="text" class="form-control" name="SDT" id="SDT" />
+                            <label>Email : </label>
+                            <input type="email" class="form-control" name="Email" id="Email" />
+                            <br />
+                        </div>
+                        <br />
+                        <div id="waiting" style="display: none;">
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="Send">Gửi</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- ===================================Ajax Login=========================-->
+    <script>
+        $(document).ready(function () {
+            $("#Forgotpass").submit(function (e) {
+                if ($("#SDT").val() == '') {
+                    $('#err_login').html('<div class="alert alert-danger">Chưa nhập SDT</div>');
+                    $("#SDT").focus();
+                    return false;
+                }
+                else if ($("#Email").val() == '') {
+                    $('#err_login').html('<div class="alert alert-danger">Chưa nhập Email</div>');
+                    $("#Email").focus();
+                    return false;
+                }
+                else {
+                    var form_data_login = {
+                        SDT: $("#SDT").val(),
+                        Email: $("#Email").val()
+                    };
+                    $.ajax({
+                        url: '/Login/ForgotPass',
+                        type: 'POST',
+                        async: true,
+                        data: form_data_login,
+                        success: function (KiemTra) {
+                            //alert(msg);
+                            if (KiemTra == 'false') {
+                                $('#err_login').html('<div class="alert alert-danger">SDT hoặc Email chưa đăng kí</div>');
+                                $("#Email").val("");
+                                $("#Email").focus();
+                                return false;
+                            }
+                            
+                            
+                            else {
+                                $.ajax({
+                                    url: '/Login/VerifyEmail',
+                                    type: 'POST',
+                                    async: true,
+                                    data: form_data_login,
+                                    success: function (gui) {
+                                        if (gui == "true")
+                                            $('#err_login').html('<div class="alert alert-success"><strong>Đã gửi về Email thành công</strong></div>');
+                                    }
+                                    });
+
+                                
+                            }
+                        }
+                    });
+                    return false;
+                }
+            });
+        })
+        //Load wating bar
+        $(document).ajaxStart(function () {
+            $("#waiting").show();
+        }).ajaxStop(function () {
+            $("#waiting").hide();
+        });
+    </script>
+
+</body>
+</html>

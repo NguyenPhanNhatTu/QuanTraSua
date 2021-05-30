@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>*@
+    @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>*@
+</head>
+<body>
+    @if (Session["QuyenUser"] == null)
+    {
+        <div class="headder-top">
+            <!-- nav -->
+            <nav>
+                <div id="logo">
+                    <h1>
+                        <a href="~/TrangChu/TrangChu">Milk Tea</a>
+                    </h1>
+                </div>
+                <label for="drop" class="toggle">Menu</label>
+                <input type="checkbox" id="drop">
+                <ul class="menu mt-2">
+                    <li class="active">
+                        <a href="~/TrangChu/TrangChu">Home</a>
+
+                    </li>
+                    
+                    <li>
+                        <a href="~/Menus/MenuKhachHang">Menu</a>
+                    </li>
+                    <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
+                        <!-- First Tier Drop Down -->
+                        <label for="drop-2" class="toggle toogle-2">
+                            Account
+                            <span class="fa fa-angle-down" aria-hidden="true"></span>
+                        </label>
+                        <a href="">
+                            Account
+                            <span class="fa fa-angle-down" aria-hidden="true"></span>
+                        </a>
+                        <input type="checkbox" id="drop-2">
+                        <ul>
+                            <li>
+                                <a href="~/Login/Login">Login</a>
+
+
+                            </li>
+                            <li>
+                                <a href="~/Register/Register">Register</a>
+
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="~/TrangChu/LienHe">Contact Us</a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- //nav -->
+        </div>
+    }
+    else if ((String)Session["QuyenUser"] == "1")
+    {
+        <div class="headder-top">
+            <!-- nav -->
+            <nav>
+                <div id="logo">
+                    <h1>
+                        <a href="~/TrangChu/TrangChu">Milk Tea</a>
+                    </h1>
+                </div>
+                <label for="drop" class="toggle">Menu</label>
+                <input type="checkbox" id="drop">
+                
+
+                <ul class="menu mt-2">
+                    <li class="active">
+                        <a href="~/TrangChu/TrangChu">Home</a>
+
+                    </li>
+
+                    <li>
+                        <a href="~/Menus/MenuKhachHang">Menu</a>
+                    </li>
+                    <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
+                        <!-- First Tier Drop Down -->
+                        <label for="drop-2" class="toggle toogle-2">
+                            Managed
+                            <span class="fa fa-angle-down" aria-hidden="true"></span>
+                        </label>
+                        <a href="#">
+                            Managed
+                            <span class="fa fa-angle-down" aria-hidden="true"></span>
+                        </a>
+                        <input type="checkbox" id="drop-4">
+                        <ul>
+                            <li>
+                                <a href="~/NhanViens/Index">Nhân Viên</a>
+
+
+                            </li>
+                            <li>
+                                <a href="~/KhachHangs/Index">Khách Hàng</a>
+
+
+                            </li>
+                            <li>
+                                <a href="~/Menus/Index">Menu</a>
+
+
+                            </li>
+                            <li>
+                                <a href="~/ChiNhanhs/Index">Chi Nhánh</a>
+
+                            </li>
+                            <li>
+                                <a href="~/Menus/ThongKe">Thống Kê Sản Phẩm</a>
+
+                            </li>
+                            <li>
+                                <a href="~/KhachHangs/ThongKe">Thống Kê Khách Hàng</a>
+
+                            </li>
+                            <li>
+                                <a href="~/HoaDons/Index">Quản Lý Đơn hàng</a>
+
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
+                        <label for="drop-2" class="toggle toogle-2">
+                            Người dùng: @Session["Ten"]
+                            <span class="fa fa-angle-down" aria-hidden="true"></span>
+                        </label>
+                        <a href="#">
+                            Người dùng: @Session["Ten"]
+                            <span class="fa fa-angle-down" aria-hidden="true"></span>
+                        </a>
+                        <input type="checkbox" id="drop-4">
+                        <ul>
+                            <li>
+                                <a href="~/Login/ChangePass">Đổi Mật Khẩu</a>
+
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
+
+                        <a href="~/Login/Login">Đăng xuất</a>
+
+
+                    </li>
+                </ul>
+            </nav>
+            <!-- //nav -->
+        </div>
+    }
+    else
+    {
+        <div class="headder-top">
+            <!-- nav -->
+            <nav>
+                <div id="logo">
+                    <h1>
+                        <a href="~/TrangChu/TrangChu">Milk Tea</a>
+                    </h1>
+                </div>
+                <label for="drop" class="toggle">Menu</label>
+                <input type="checkbox" id="drop">
+                <ul class="menu mt-2">
+                    <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
+                        @if ((String)Session["QuyenUser"] == "3")
+                        {
+                            <label for="drop-2" class="toggle toogle-2">
+                                Người dùng: @Session["Ten"]
+                                <span class="fa fa-angle-down" aria-hidden="true"></span>
+                            </label>
+                            <a href="#">
+                                Người dùng: @Session["Ten"]
+                                <span class="fa fa-angle-down" aria-hidden="true"></span>
+                            </a>
+
+                            <input type="checkbox" id="drop-4">
+                            <ul>
+                                <li>
+                                    <a href="~/KhachHangs/ThongTinKhachHang">Thông Tin Cá Nhân</a>
+
+                                </li>
+                                <li>
+                                    <a href="~/HoaDons/Index">Đơn hàng</a>
+
+                                </li>
+                                <li>
+                                    <a href="~/Login/ChangePass">Đổi Mật Khẩu</a>
+
+                                </li>
+
+                            </ul>
+                        }
+                        else if ((String)Session["QuyenUser"] == "2")
+                        {
+                            <label for="drop-2" class="toggle toogle-2">
+                                Người dùng: @Session["Ten"]
+                                <span class="fa fa-angle-down" aria-hidden="true"></span>
+                            </label>
+                            <a href="#">
+                                Người dùng: @Session["Ten"]
+                                <span class="fa fa-angle-down" aria-hidden="true"></span>
+                            </a>
+
+                            <input type="checkbox" id="drop-4">
+                            <ul>
+                                <li>
+                                    <a href="~/NhanViens/ThongTinNhanVien">Thông Tin Cá Nhân</a>
+
+                                </li>
+                                <li>
+                                    <a href="~/HoaDons/Index">Đơn hàng</a>
+
+                                </li>
+                                <li>
+                                    <a href="~/Login/ChangePass">Đổi Mật Khẩu</a>
+
+                                </li>
+                            </ul>
+                        }
+                    </li>
+                    
+                </ul>
+                <ul class="menu mt-2">
+                    <li class="active">
+                        <a href="~/TrangChu/TrangChu">Home</a>
+
+                    </li>
+                    
+                    <li>
+                        <a href="~/Menus/MenuKhachHang">Menu</a>
+                    </li>
+                    <li>
+                        <a href="~/TrangChu/LienHe">Contact Us</a>
+                    </li>
+                    
+                    <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
+
+                        <a href="~/Login/Login">Đăng xuất</a>
+
+
+                    </li>
+                </ul>
+            </nav>
+            <!-- //nav -->
+        </div>
+    }
+    @RenderBody()
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

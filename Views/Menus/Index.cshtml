@@ -1,0 +1,183 @@
+﻿@using Doan1.Models;
+@using System.Linq;
+@model PagedList.IPagedList<Doan1.Models.Menu>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Menu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .table {
+        background-color: aliceblue;
+    }
+</style>
+<h2>View</h2>
+<div style="padding-top:5em"></div>
+
+
+<div class="jumbotron">
+    <h2 style="text-align: center" class="text-danger"> Menu Sản Phẩm</h2>
+</div>
+@using (Html.BeginForm("Index", "Menus", FormMethod.Get))
+{
+    <p>
+        Tên món: @Html.TextBox("SearchString", (string)ViewBag.searchValue) <input type="submit" value="Tìm kiếm" /> <input type="button" onclick="location.href = '/Menus/Index'" name="Reset" value="Mặc định" />
+        @Html.Hidden("page", (object)ViewBag.page)
+        @Html.Hidden("sortProperty", (object)ViewBag.sortProperty)
+        @Html.Hidden("sortOrder", (object)ViewBag.sortOrder)
+        @Html.Hidden("size", (object)ViewBag.pageSize)
+    </p>
+}
+<p>
+    <input type="button" class="btn btn-danger" onclick="location.href = '/Menus/Create'" value="Tạo món mới" />
+</p>
+
+<table class="table">
+    <tr>
+
+        @Html.Raw(ViewBag.Headings)
+
+    <tr style="background-color:Highlight; text-align:center">
+
+        <th>
+            <div>Mã Món</div>
+        </th>
+
+        <th>
+            <div>Tên Món</div>
+        </th>
+        <th>
+            <div>Loại</div>
+        </th>
+        <th>
+            <div>Giá Tiền</div>
+        </th>
+        <th>
+            <div>Đã bán</div>
+        </th>
+        <th>
+            <div>Chi Nhánh</div>
+        </th>
+        <th>
+            <div>Ảnh</div>
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.MaMon)
+
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.TenMon)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Loai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GiaTien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuongDaBan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChiNhanh.TenChiNhanh)
+            </td>
+            <td>
+                <div style="width:200px;height:100px;">
+                    @Html.Image("../" + item.AnhMinhHoa, "alt", "100", "100")
+                </div>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MaMon }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MaMon }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.MaMon })
+            </td>
+        </tr>
+    }
+
+</table>
+<div  class="col-2">
+    <a href="@Url.Action("Xuat")">Tải về Excel</a>
+</div>
+<fieldset>
+
+    @using (Html.BeginForm("ImportFromExcel", "Menus", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.ValidationSummary();
+        <p>
+            <input type="file" name="postedFile" class="col-2" />
+        </p>
+        <p class="col-2">
+            <input type="submit" button id="upload" value="Import" class="btn-success" />
+        </p>
+    }
+
+</fieldset>
+@section scripts{
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    <script>
+        $("#upload").click(function () {
+            debugger;
+            if (window.FormData == undefined)
+                alert("Error: FormData is undefined");
+
+            else {
+                var fileUpload = $("#postedFile").get(0); 
+                var files = fileUpload.files;
+
+                var fileData = new FormData();
+
+                fileData.append(files[0].name, files[0]);
+
+                $.ajax({
+                    url: '/Menus/ImportFromExcel',
+                    type: 'post',
+                    datatype: 'json',
+                    contentType: false,
+                    processData: false,
+                    async: false,
+                    data: fileData,
+                    success: function (response) {
+                        alert(response);
+                    }
+                });
+            }
+
+        });
+    </script>
+
+}
+
+<!-- Thêm mã phân trang -->
+<br />
+
+<div style="text-align: center">
+    @using (Html.BeginForm("Index", "Menus", FormMethod.Get))
+    {
+        <p>
+            Kích thước trang: @Html.DropDownList("size", (List<SelectListItem>)ViewBag.size, new { @onchange = "this.form.submit();" })
+        </p>
+
+        @Html.Hidden("page", (object)ViewBag.page)
+        @Html.Hidden("sortProperty", (object)ViewBag.sortProperty)
+        @Html.Hidden("sortOrder", (object)ViewBag.sortOrder)
+        @Html.Hidden("searchString", (object)ViewBag.searchValue)
+    }
+</div>
+<div style="text-align: center">
+    Trang: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+</div>
+
+<div style="text-align: center">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, size = ViewBag.currentSize, sortProperty = ViewBag.sortProperty, sortOrder = ViewBag.SortOrder, searchString = ViewBag.searchValue }))
+</div>
+<!-- Kết thúc -->

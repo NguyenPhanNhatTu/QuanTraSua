@@ -1,0 +1,73 @@
+﻿@model Doan1.Models.Menu
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron"></div>
+
+<div class="jumbotron">
+    <h2 style=" text-align: center" class="text-info">Chỉnh Sửa Món</h2>
+</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label class="control-label col-md-2"><b>Tên Món</b></label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenMon, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenMon, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2"><b>Loại</b></label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Loai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Loai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2"><b>Giá Tiền</b></label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GiaTien, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GiaTien, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Chi Nhánh</label>
+            <div class="col-md-10">
+                @Html.DropDownList("MaChiNhanh", null, htmlAttributes: new { @class = "form-control-lg" })
+                @Html.ValidationMessageFor(model => model.MaChiNhanh, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2"><b>Ảnh minh họa</b></label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AnhMinhHoa, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AnhMinhHoa, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-success" />
+                <input type="button" id="back" value="Back" class="btn btn-info" onclick="location.href='/Menus/Index'" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,641 @@
+﻿
+@{
+    ViewBag.Title = "TrangChu";
+    Layout = "~/Views/_LayoutPageHome.cshtml";
+}
+
+
+
+
+<!--A Design by W3layouts
+  Author: W3layout
+  Author URL: http://w3layouts.com
+  License: Creative Commons Attribution 3.0 Unported
+  License URL: http://creativecommons.org/licenses/by/3.0/
+  -->
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Gateau a hotel & Restaurant Category Bootstrap Responsive web Template| Home :: w3layouts</title>
+    <!--meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Gateau Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+      Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!--//meta tags ends here-->
+    <!--booststrap-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
+    <!--//booststrap end-->
+    <!-- font-awesome icons -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!--stylesheets-->
+    <link href="css/style.css" rel='stylesheet' type='text/css' media="all">
+    <!--//stylesheets-->
+    <link href="//fonts.googleapis.com/css?family=Arimo:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main-top" id="home">
+        @if (Session["QuyenUser"] == null)
+        {
+            <div class="headder-top">
+                <!-- nav -->
+                <nav>
+                    <div id="logo">
+                        <h1>
+                            <a href="~/TrangChu/TrangChu">Milk Tea</a>
+                        </h1>
+                    </div>
+                    <label for="drop" class="toggle">Menu</label>
+                    <input type="checkbox" id="drop">
+                    <ul class="menu mt-2">
+                        <li class="active">
+                            <a href="~/TrangChu/TrangChu">Home</a>
+
+                        </li>
+                        
+                        <li>
+                            <a href="~/Menus/MenuKhachHang">Menu</a>
+                        </li>
+                        <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
+                            <!-- First Tier Drop Down -->
+                            <label for="drop-2" class="toggle toogle-2">
+                                Account
+                                <span class="fa fa-angle-down" aria-hidden="true"></span>
+                            </label>
+                            <a href="#">
+                                Account
+                                <span class="fa fa-angle-down" aria-hidden="true"></span>
+                            </a>
+                            <input type="checkbox" id="drop-2">
+                            <ul>
+                                <li>
+                                    <a href="~/Login/Login">Login</a>
+
+
+                                </li>
+                                <li>
+                                    <a href="~/Register/Register">Register</a>
+
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="~/TrangChu/LienHe">Contact Us</a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- //nav -->
+            </div>
+        }
+        else if ((String)Session["QuyenUser"] == "1")
+        {
+            <div class="headder-top">
+                <!-- nav -->
+                <nav>
+                    <div id="logo">
+                        <h1>
+                            <a href="~/TrangChu/TrangChu">Milk Tea</a>
+                        </h1>
+                    </div>
+                    <label for="drop" class="toggle">Menu</label>
+                    <input type="checkbox" id="drop">
+                    <ul class="menu mt-2">
+                        <li class="active">
+                            <a href="~/TrangChu/TrangChu">Home</a>
+
+                        </li>
+
+                        <li>
+                            <a href="~/Menus/MenuKhachHang">Menu</a>
+                        </li>
+                        <li>
+                            <a href="~/TrangChu/LienHe">Contact Us</a>
+                        </li>
+                        <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
+                            <!-- First Tier Drop Down -->
+                            <label for="drop-2" class="toggle toogle-2">
+                                Managed
+                                <span class="fa fa-angle-down" aria-hidden="true"></span>
+                            </label>
+                            <a href="#">
+                                Managed
+                                <span class="fa fa-angle-down" aria-hidden="true"></span>
+                            </a>
+                            <input type="checkbox" id="drop-4">
+                            <ul>
+                                <li>
+                                    <a href="~/NhanViens/Index">Nhân Viên</a>
+
+
+                                </li>
+                                <li>
+                                    <a href="~/KhachHangs/Index">Khách Hàng</a>
+
+
+                                </li>
+                                <li>
+                                    <a href="~/Menus/Index">Menu</a>
+
+
+                                </li>
+                                <li>
+                                    <a href="~/ChiNhanhs/Index">Chi Nhánh</a>
+
+                                </li>
+                                <li>
+                                    <a href="~/Menus/ThongKe">Thống Kê Sản Phẩm</a>
+
+                                </li>
+                                <li>
+                                    <a href="~/KhachHangs/ThongKe">Thống Kê Khách Hàng</a>
+
+                                </li>
+                                <li>
+                                    <a href="~/HoaDons/Index">Quản Lý Đơn hàng</a>
+
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
+                            <label for="drop-2" class="toggle toogle-2">
+                                Người dùng: @Session["Ten"]
+                                <span class="fa fa-angle-down" aria-hidden="true"></span>
+                            </label>
+                            <a href="#">
+                                Người dùng: @Session["Ten"]
+                                <span class="fa fa-angle-down" aria-hidden="true"></span>
+                            </a>
+
+                            <input type="checkbox" id="drop-2">
+                            <ul>
+                                <li>
+                                    <a href="~/Login/ChangePass">Đổi Mật Khẩu</a>
+
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
+
+                            <a href="~/Login/Login">Đăng xuất</a>
+
+
+                        </li>
+                    </ul>
+                </nav>
+                <!-- //nav -->
+            </div>
+        }
+        else
+        {
+            <div class="headder-top">
+                <!-- nav -->
+                <nav>
+                    <div id="logo">
+                        <h1>
+                            <a href="~/TrangChu/TrangChu">Milk Tea</a>
+                        </h1>
+                    </div>
+                    <label for="drop" class="toggle">Menu</label>
+                    <input type="checkbox" id="drop">
+                    <ul class="menu mt-2">
+                        <li class="active">
+                            <a href="~/TrangChu/TrangChu">Home</a>
+
+                        </li>
+                        
+                        <li>
+                            <a href="~/Menus/MenuKhachHang">Menu</a>
+                        </li>
+                        <li>
+                            <a href="~/TrangChu/LienHe">Contact Us</a>
+                        </li>
+                        <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
+                            @if ((String)Session["QuyenUser"] == "3")
+                            {
+                                <label for="drop-2" class="toggle toogle-2">
+                                    Người dùng: @Session["Ten"]
+                                    <span class="fa fa-angle-down" aria-hidden="true"></span>
+                                </label>
+                                <a href="#">
+                                    Người dùng: @Session["Ten"]
+                                    <span class="fa fa-angle-down" aria-hidden="true"></span>
+                                </a>
+
+                                <input type="checkbox" id="drop-2">
+                                <ul>
+                                    <li>
+                                        <a href="~/KhachHangs/ThongTinKhachHang">Thông Tin Cá Nhân</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="~/HoaDons/Index">Đơn hàng</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="~/Login/ChangePass">Đổi Mật Khẩu</a>
+
+                                    </li>
+
+                                </ul>
+                            }
+                            else if ((String)Session["QuyenUser"] == "2")
+                            {
+                                <label for="drop-2" class="toggle toogle-2">
+                                    Người dùng: @Session["Ten"]
+                                    <span class="fa fa-angle-down" aria-hidden="true"></span>
+                                </label>
+                                <a href="#">
+                                    Người dùng: @Session["Ten"]
+                                    <span class="fa fa-angle-down" aria-hidden="true"></span>
+                                </a>
+
+                                <input type="checkbox" id="drop-2">
+                                <ul>
+                                    <li>
+                                        <a href="~/NhanViens/ThongTinNhanVien">Thông Tin Cá Nhân</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="~/HoaDons/Index">Đơn hàng</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="~/Login/ChangePass">Đổi Mật Khẩu</a>
+
+                                    </li>
+                                </ul>
+                            }
+                        </li>
+                        <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
+
+                            <a href="~/Login/Login">Đăng xuất</a>
+
+
+                        </li>
+                    </ul>
+                </nav>
+                <!-- //nav -->
+            </div>
+        }
+        <!-- banner -->
+        <div class="container">
+            <div class="row main-banner">
+                <div class="col-lg-4 col-md-5 style-banner ">
+                    <div class="banner-rotated">
+                        <h4>
+                            <span> M</span>
+                        </h4>
+                        <h4>
+                            <span> I</span>
+                        </h4>
+                        <h4>
+                            <span> L</span>
+                        </h4>
+                        <h4>
+                            <span> K</span>
+                        </h4>
+
+                    </div>
+                    <div class="banner-rotated">
+                        <h4>
+                            <span> T</span>
+                        </h4>
+                        <h4>
+                            <span> E</span>
+                        </h4>
+                        <h4>
+                            <span> A</span>
+                        </h4>
+                        <h4>
+                            <span> S</span>
+                        </h4>
+                    </div>
+                    <h5 class="mt-lg-4 mt-3">
+                        If Milk Tea can't fix it, It's a Serious Problem!!!
+                    </h5>
+                </div>
+                <div class="col-lg-8 col-md-7 banner-imgs text-center">
+                    <div class="row no-gutters">
+                        <div class="col-sm-4 banner-right-images">
+                            <img src="~/images/trasuadoc1.png" alt="news image" class="img-fluid" />
+                        </div>
+                        <div class="col-sm-4 banner-right-images">
+                            <img src="~/images/trasua4.jpg" alt="news image" class="img-fluid">
+                        </div>
+                        <div class="col-sm-4 banner-right-images">
+                            <img src="~/images/tradaodoc.jpg" alt="news image" class="img-fluid">
+                        </div>
+                        <div class="col-sm-4 banner-right-images">
+                            <img src="~/images/trasua2.jpg" alt="news image" class="img-fluid ">
+                        </div>
+                        <div class="col-sm-4 banner-right-images">
+                            <img src="~/images/suatuoitranchau.jpg" alt="news image" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //banner -->
+    <!-- about -->
+    <section class="about py-lg-4 py-md-3 py-sm-3 py-3" id="about">
+        <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 about-two-grids my-3">
+                    <span class="fa fa-bars mb-3" aria-hidden="true"></span>
+                    <h4>Milk Tea</h4>
+                    <div class="about-para-txt mt-2">
+                        <p>Trà sữa đề cập đến một số dạng đồ uống được tìm thấy trong nhiều nền văn hóa, có chứa một số kết hợp giữa trà và sữa. Đồ uống thay đổi dựa trên số lượng của từng thành phần chính này, phương pháp pha chế và sự bao gồm của các thành phần khác (thay đổi từ đường hoặc mật ong với muối hoặc bạch đậu khấu).</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 about-two-grids my-3">
+                    <span class="fa fa-diamond mb-3" aria-hidden="true"></span>
+                    <h4>Tea</h4>
+                    <div class="about-para-txt mt-2">
+                        <p>Trà là một loại đồ uống thơm thường được pha chế bằng cách đổ nước nóng hoặc sôi lên lá cây Camellia sinensis, một loại cây bụi thường xanh có nguồn gốc từ Đông Á, sau khi pha nước, nó là thức uống được tiêu thụ rộng rãi nhất trên thế giới.</p>
+                    </div>
+
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 about-two-grids my-3">
+                    <span class="fa fa-birthday-cake mb-3" aria-hidden="true"></span>
+                    <h4>Fresh Milk</h4>
+                    <div class="about-para-txt mt-2">
+                        <p>Sữa tươi là các loại sữa động vật (bò sữa, dê, cừu...) ở dạng nguyên liệu thô, dạng nước, chưa qua chế biến hoặc chỉ mới qua sơ chế và chưa được tiệt trùng hay khử trùng triệt để bởi các thiết bị xử lý nhiệt vi lọc, sữa tươi được bảo quản và vận chuyển trong điều kiện lạnh trước và trong khi sử dụng.</p>
+                    </div>
+
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 title-right-side my-3">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //about -->
+    <!-- service -->
+    <section class="service py-lg-4 py-md-3 py-sm-3 py-3" id="service">
+        <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 my-3">
+                    <div class="rotated-title">
+                        <h3 class="title mb-lg-4 mb-md-3 mb-2">Specical</h3>
+                        <h6 class="title-sub">What We dO</h6>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-8 service-grid-top position-relative my-3">
+                    <img src="~/images/trachung.jpg" alt="news image" class="img-fluid">
+
+                </div>
+            </div>
+            <div class="row mid-row-grids">
+                <div class="col-lg-3 col-md-6 col-sm-6 service-grid-wthree my-3">
+                    <div class="ser-fashion-wthree">
+                        <div class="about-icon mb-md-4 mb-3">
+                            <span class="fa fa-thumbs-o-up" aria-hidden="true"></span>
+                        </div>
+                        <div class="ser-sevice-grid">
+                            <h4 class="pb-3">Best Service</h4>
+                            <p>
+                                Đáp ứng được tất cả nhu cầu của khách hàng.Đảm bảo khách hàng hài lòng với dịch vụ và chất lượng.Chất Lượng hàng đầu Việt Nam.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 service-grid-wthree my-3">
+                    <div class="ser-fashion-wthree">
+                        <div class="about-icon mb-md-4 mb-3">
+                            <span class="fa fa-laptop" aria-hidden="true"></span>
+                        </div>
+                        <div class="ser-sevice-grid">
+                            <h4 class="pb-3">Online Order</h4>
+                            <p>
+                                Có Thể Đặt hết tất cả các mặt hàng online.
+                                Đặt một cách dễ dàng nhanh chóng.
+                                Giao diện đặt hàng dễ dùng và tiện nghi.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 service-grid-wthree my-3">
+                    <div class="ser-fashion-wthree">
+                        <div class="about-icon mb-md-4 mb-3">
+                            <span class="fa fa-smile-o" aria-hidden="true"></span>
+                        </div>
+                        <div class="ser-sevice-grid">
+                            <h4 class="pb-3">Door Delivery</h4>
+                            <p>
+                                Dịch vụ giao hàng nhanh chóng.
+                                Gói hàng cẩn thận.
+                                Giao tận tay người dùng.
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 service-grid-wthree my-3">
+                    <div class="ser-fashion-wthree">
+                        <div class="about-icon mb-md-4 mb-3">
+                            <span class="fa fa-users" aria-hidden="true"></span>
+                        </div>
+                        <div class="ser-sevice-grid">
+                            <h4 class="pb-3">Branches</h4>
+                            <p>
+                                Thương hiệu vang danh trên toàn quốc.
+                                Hàng chục chi nhánh ở các thành phố trên toàn quốc.
+                                Thương hiệu nhượng quyền.
+                                Nhận hàng trăm giải thưởng lớn nhỏ về thực phẩm.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //service -->
+    <!-- Online Order -->
+    <section class="advertise-count">
+        <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 fashion-collet-txt text-center">
+                    <h5>Online Order</h5>
+                    <h6 class="mt-lg-4 mt-3"> Get 25% off</h6>
+                    <p class="mt-2">
+                        Mua nhiều lần được nhiều Voucher giảm  giá hấp dẫn.
+                        Mua số lượng lớn được nhiều ưu đãi.
+                        Có các ngày giảm giá đặc biệt nên khách hàng lưu ý cập nhật tin tức trên trang web chính thức.
+
+                    </p>
+                </div>
+                <div class="col-lg-6 col-md-6 text-center">
+                    <div class="order-show-w3ls">
+                        <h5> Order Now</h5>
+
+                        <ul class="mt-lg-4 mt-3">
+                            <li>
+                                <p>
+                                    <span>Hot Line</span> +1800 6779
+                                </p>
+                            </li>
+                            <li class="mt-lg-3 mt-2">
+                                <p>
+                                    <span> Email </span> Sales@MilkTea.com.vn
+                                </p>
+                            </li>
+                        </ul>
+                        <div class="order-buttn mt-lg-4 mt-3">
+                            <a href="/Menus/MenuKhachHang" class="btn">Order Now </a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--//menu -->
+    <!-- client -->
+    <section class="client py-lg-4 py-md-3 py-sm-3 py-3" id="client">
+        <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 cilent-item text-center my-3">
+                    <div class="clients-ile-img">
+                        <img src="~/images/anhnam.jpg" alt=" " class="img-fluid">
+                        <div class="clients-color-ile text-center mt-lg-4 mt-3">
+                            <p>
+                                Giám đốc điều hành tài chính.
+                            </p>
+                            <div class="mt-3 clients-txt-ile">
+                                <h4>Nguyễn Phan Nhật Tú</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 cilent-item text-center my-3">
+                    <div class="clients-ile-img">
+                        <img src="~/images/anhnam.jpg" alt=" " class="img-fluid">
+                        <div class="clients-color-ile text-center mt-lg-4 mt-3">
+                            <p>
+                                Giám đốc điều hành nhân sự.
+                            </p>
+                            <div class="mt-3 clients-txt-ile">
+                                <h4>Võ Ngọc Nghĩa</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 title-right-side my-3">
+                    <div class="rotated-title">
+                        <h3 class="title mb-lg-4 mb-md-3 mb-2">Clients</h3>
+                        <h6 class="title-sub">Some Words</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--//client -->
+    <!-- footer -->
+    <section class="py-lg-4 py-md-3 py-sm-3 py-3 bottom-footers">
+        <div class="container py-lg-5 py-md-5 py-sm-4 py-3">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 bottom-footer-left">
+                    <div class="social-icons mb-lg-4 mb-3">
+                        <ul>
+                            <li class="facebook">
+                                <a href="https://www.facebook.com/profile.php?id=100007853479013">
+                                    <span class="fa fa-facebook"></span>
+                                </a>
+                            </li>
+                            <li class="twitter">
+                                <a href="https://www.facebook.com/profile.php?id=100007853479013">
+                                    <span class="fa fa-twitter"></span>
+                                </a>
+                            </li>
+                            <li class="rss">
+                                <a href="https://www.facebook.com/ngocnghia16102k/">
+                                    <span class="fa fa-rss"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <p>Liên hệ các nền tảng mạng xã hội để biết thêm thông tin chi tiết</p>
+                    <div class="footer-w3layouts-head mt-2">
+                        <h2>
+                            <a href="~/TrangChu/TrangChu">Milk Tea</a>
+                        </h2>
+                    </div>
+                </div>
+                <div class="footer-info-bottom col-lg-3 col-md-6 col-sm-6 text-center">
+                    <h4 class="pb-lg-4 pb-md-3 pb-3">Nav Links</h4>
+                    <ul class="bottom-menu">
+                        <li class="py-sm-2 py-1">
+                            <a href="~/TrangChu/TrangChu">Home</a>
+                        </li>
+                        
+                        <li class="py-sm-2 py-1">
+                            <a href="~/Menus/MenuKhachHang">Menu</a>
+                        </li>
+                        <li class="py-sm-2 py-1">
+                            <a href="~/Login/Login">Account</a>
+                        </li>
+                        <li>
+                            <a href="~/TrangChu/LienHe">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-info-bottom col-lg-3 col-md-6 col-sm-6 col-sm-6 text-center">
+                    <h4 class="pb-lg-4 pb-md-3 pb-3">Facebook Us</h4>
+                    <div class="footer-office-hour">
+                        <ul>
+                            <li>
+                                <p>Vào Group để chia sẽ những cảm giác khi được phục vụ tại đây.</p>
+                            </li>
+                            <li class="my-1">
+                                <p>
+                                    <a href="https://www.facebook.com/">https://www.facebook.com/</a>
+                                </p>
+                            </li>
+                            <li class=" mb-sm-3 mb-2">
+                                <span>Posted 3 days ago.</span>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-info-bottom col-lg-3 col-md-6 col-sm-6 text-center">
+                    <h4 class="pb-lg-4 pb-md-3 pb-3">NewsLetter</h4>
+                    <div class="newsletter-footers">
+                        <form action="#" method="post">
+                            <input type="email" name="Your Email" class="form-control" placeholder="Your Email" required="">
+                            <button type="submit" class="btn1 mt-3">SubScribe</button>
+                        </form>
+                    </div>
+                    <div class="footer-office-hour mt-sm-3 mt-2">
+                        <p>Có điều gì cần góp ý xin gửi thư cho chúng tôi. Chúng tôi sẽ tiếp thu và thay đổi để hoàn thiện bản thân</p>
+                    </div>
+                </div>
+            </div>
+            <!-- move icon -->
+            <div class="text-center">
+                <a href="#home" class="move-top text-center mt-3">
+                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </a>
+            </div>
+            <!--//move icon -->
+        </div>
+    </section>
+
+    <!--//footer -->
+</body>
+
+</html>
+

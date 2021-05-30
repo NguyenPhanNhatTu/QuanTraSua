@@ -1,0 +1,91 @@
+﻿@model Doan1.Models.KhachHang
+
+@{
+    ViewBag.Title = "ThongTinKhachHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .table {
+        background-color: aliceblue;
+    }
+</style>
+<div class="jumbotron"></div>
+
+<div class="jumbotron">
+    <h2 style="text-align: center" class="text-danger">Chi tiết thông tin khách hàng</h2>
+</div>
+
+<div>
+    <h4>Khách Hàng</h4>
+    <hr />
+    <div class="form-group">
+        <label class="control-label col-md-2 "> <b>Số Điện Thoại</b></label>
+        <div class="col-md-10">
+            @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.SoDienThoai)
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2 "> <b>Tên Khách Hàng</b></label>
+        <div class="col-md-10">
+            @Html.ValidationMessageFor(model => model.TenKH, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.TenKH)
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2 "> <b>Địa Chỉ</b></label>
+        <div class="col-md-10">
+            @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.DiaChi)
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label col-md-2 "> <b>Email</b></label>
+        <div class="col-md-10">
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Email)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2 "> <b>Mật Khẩu</b></label>
+        <div class="col-md-10">
+            @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.MatKhau)
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" id="back" value="Back" class="btn btn-info" onclick="location.href='/TrangChu/TrangChu'" />
+        </div>
+    </div>
+
+</div>
+
+
+

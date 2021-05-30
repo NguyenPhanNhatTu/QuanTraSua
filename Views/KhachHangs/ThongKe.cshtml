@@ -1,0 +1,79 @@
+﻿@using Doan1.Models;
+@model IEnumerable<Doan1.Models.KhachHang>
+@{
+    ViewBag.Title = "ThongKe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div style="padding-top:10em"></div>
+@{ int soLuongKhachHang = ViewBag.soLuongKH;
+}
+<body>
+
+    <div style="background-color:transparent">
+        <h2 style="text-align: center" class="text-danger"> Top 5 Khách Hàng Mua Nhiều Nhất</h2>
+    </div>
+    <div class="jumbotron" align="left" style="background-color:transparent">
+            <font size="4" color="red">
+                Tổng Số Khách Hàng:@soLuongKhachHang Người
+
+            </font>
+        </div>
+    <table class="table">
+        <tr>
+        <tr style="background-color:Highlight; text-align:center">
+
+            <th>
+                <div>Số Điện Thoại</div>
+            </th>
+
+            <th>
+                <div>Tên Khách Hàng</div>
+            </th>
+            <th>
+                <div>Địa Chỉ</div>
+            </th>
+            <th>
+                <div>Email</div>
+            </th>
+            <th>
+                <div>Mật Khẩu</div>
+            </th>
+            <th>
+                <div>Đã Mua</div>
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoDienThoai)
+
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenKH)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaChi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MatKhau)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DaMua)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</body>
+

@@ -1,0 +1,262 @@
+﻿@using Doan1.Models;
+@using System.Linq;
+@model PagedList.IPagedList<Doan1.Models.HoaDon>
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "HoaDon";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .table {
+        background-color: aliceblue;
+    }
+
+    .btn {
+        border: none;
+        background-color: inherit;
+        padding: 14px 28px;
+        font-size: 16px;
+        cursor: pointer;
+        display: inline-block;
+    }
+
+        .btn:hover {
+            background: #eee;
+        }
+</style>
+<div class="jumbotron"></div>
+@if ((string)Session["QuyenUser"] == "1")
+{
+<div class="col-2">
+    <a href="@Url.Action("Xuat")">Tải tổng doanh thu (Excel)</a>
+</div>
+}
+<div class="jumbotron">
+    <h2 style="text-align: center " class="text-danger ">Danh sách hóa đơn</h2>
+</div>
+@using (Html.BeginForm("Index", "HoaDons", FormMethod.Get))
+{
+    <p style="text-align:center">
+        Mã đơn: @Html.TextBox("SearchString", (string)ViewBag.searchValue) <input type="submit" value="Tìm kiếm" /> <input type="button" onclick="location.href = '/HoaDons/Index'" name="Reset" value="Mặc định" />
+        @Html.Hidden("page", (object)ViewBag.page)
+        @Html.Hidden("size", (object)ViewBag.pageSize)
+    </p>
+}
+
+<div style="text-align:center">
+    @if ((string)Session["PhanLoai"] == "1")
+    {
+        <button class="btn " style="background-color:darkgrey; border:none" onclick="location.href='@Url.Action("btnTatCa", "HoaDons")'">
+
+            Tất cả
+        </button>
+    }
+    else
+    {
+        <button class="btn " style="background-color:white; border:none" onclick="location.href='@Url.Action("btnTatCa", "HoaDons")'">
+
+            Tất cả
+        </button>
+    }
+    @if ((string)Session["PhanLoai"] == "2")
+    {
+        <button class="btn " style="background-color:darkgrey; border:none" onclick="location.href='@Url.Action("btnChoXacNhan", "HoaDons")'">
+            Chờ xác nhận
+        </button>
+    }
+    else
+    {
+        <button class="btn " style="background-color:white; border:none" onclick="location.href='@Url.Action("btnChoXacNhan", "HoaDons")'">
+            Chờ xác nhận
+        </button>
+    }
+    @if ((string)Session["PhanLoai"] == "3")
+    {
+        <button class="btn " style="background-color:darkgrey; border:none" onclick="location.href='@Url.Action("btnChoLayHang", "HoaDons")'">
+            Chờ lấy hàng
+        </button>
+    }
+    else
+    {
+        <button class="btn " style="background-color:white; border:none" onclick="location.href='@Url.Action("btnChoLayHang", "HoaDons")'">
+            Chờ lấy hàng
+        </button>
+    }
+    @if ((string)Session["PhanLoai"] == "4")
+    {
+        <button class="btn " style="background-color:darkgrey; border:none" onclick="location.href='@Url.Action("btnDangGiao", "HoaDons")'">
+            Đang giao
+        </button>
+    }
+    else
+    {
+        <button class="btn " style="background-color:white; border:none" onclick="location.href='@Url.Action("btnDangGiao", "HoaDons")'">
+            Đang giao
+        </button>
+    }
+    @if ((string)Session["PhanLoai"] == "5")
+    {
+        <button class="btn " style="background-color:darkgrey; border:none" onclick="location.href='@Url.Action("btnDaGiao", "HoaDons")'">
+            Đã giao
+        </button>
+    }
+    else
+    {
+        <button class="btn " style="background-color:white; border:none" onclick="location.href='@Url.Action("btnDaGiao", "HoaDons")'">
+            Đã giao
+        </button>
+    }
+    @if ((string)Session["PhanLoai"] == "6")
+    {
+        <button class="btn " style="background-color:darkgrey; border:none" onclick="location.href='@Url.Action("btnDaHuy", "HoaDons")'">
+            Đã hủy
+        </button>
+    }
+    else
+    {
+        <button class="btn " style="background-color:white; border:none" onclick="location.href='@Url.Action("btnDaHuy", "HoaDons")'">
+            Đã hủy
+        </button>
+    }
+</div>
+
+
+
+
+@foreach (var item in Model)
+{
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th width="15%">
+                        user:
+                        @Html.DisplayFor(modelItem => item.SoDienThoai)
+                        | Mã đơn:
+                        @Html.DisplayFor(modelItem => item.MaHD)
+                    </th>
+                    <th width="60%">
+                    </th>
+
+                    <th width="25%" align="center">
+                        @Html.DisplayFor(modelItem => item.ChiNhanh.TenChiNhanh) |
+                        <font color="red">
+                            @Html.DisplayFor(modelItem => item.TrangThai)
+                        </font>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item1 in item.ChiTietHoaDons)
+                {
+
+                    <tr style="width:200px;height:100px;">
+                        <td>
+                            @Html.Image("../" + item1.Menu.AnhMinhHoa, "alt", "100", "100")
+
+                        </td>
+                        <td>
+
+                            @Html.DisplayFor(modelItem => item1.Menu.TenMon)
+                            (Size: @Html.DisplayFor(modelItem => item1.Size),
+                            @Html.DisplayFor(modelItem => item1.Da)%,
+                            @Html.DisplayFor(modelItem => item1.Duong)%
+                            )
+                            <div>
+                                x @Html.DisplayFor(modelItem => item1.SoLuong)
+                            </div>
+                        </td>
+
+
+                        <td valign="middle" align="center">
+
+                            @Html.DisplayFor(modelItem => item1.Gia) đ
+                        </td>
+
+
+
+                    </tr>
+
+                }
+            </tbody>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                        @if ((string)Session["QuyenUser"] == "1" || (string)Session["QuyenUser"] == "2")
+                        {
+                            if (item.TrangThai == "Chờ xác nhận")
+                            {
+                                <button class="btn " style="background-color:darkgrey;" onclick="location.href='@Url.Action("XacNhan", new { iddonhang = item.MaHD })'">xác nhận</button>
+                                <button class="btn " style="background-color:darkgrey;" onclick="location.href='@Url.Action("huy", new { iddonhang = item.MaHD })'">Hủy đơn hàng</button>
+                            }
+                            else if (item.TrangThai == "Chờ lấy hàng")
+                            {
+                                <button class="btn " style="background-color:darkgrey;" onclick="location.href='@Url.Action("layhang", new { iddonhang = item.MaHD })'">Đã lấy</button>
+                            }
+
+
+                        }
+                        else if ((string)Session["QuyenUser"] == "3")
+                        {
+                            if (item.TrangThai == "Chờ xác nhận")
+                            {
+                                <button class="btn " style="background-color:darkgrey;" onclick="location.href='@Url.Action("huy", new { iddonhang = item.MaHD })'">Hủy đơn hàng</button>
+                            }
+                            if (item.TrangThai == "Đang giao")
+                            {
+                                <button class="btn " style="background-color:darkgrey;" onclick="location.href='@Url.Action("dagiao", new { iddonhang = item.MaHD })'">Đã nhận</button>
+                            }
+                        }
+
+                    </th>
+
+                    <th align="center">
+                        <div>
+                            <font size="4" color="red">
+                                Tổng số tiền:
+                                @Html.DisplayFor(modelItem => item.TongGia) đ
+                            </font>
+                        </div>
+                        <div>
+                            @Html.ActionLink("Chi tiết đơn hàng", "Details", new { id = item.MaHD })
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+
+        </table>
+    </div>
+}
+
+
+
+
+
+<!-- Thêm mã phân trang -->
+<br />
+
+<div style="text-align: center">
+    @using (Html.BeginForm("Index", "HoaDons", FormMethod.Get))
+    {
+        <p>
+
+            Kích thước trang: @Html.DropDownList("size", (List<SelectListItem>)ViewBag.size, new { @onchange = "this.form.submit();" })
+        </p>
+
+        @Html.Hidden("page", (object)ViewBag.page)
+
+        @Html.Hidden("searchString", (object)ViewBag.searchValue)
+    }
+</div>
+<div style="text-align: center">
+    Trang: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+</div>
+
+<div style="text-align: center">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, size = ViewBag.currentSize, searchString = ViewBag.searchValue }))
+</div>
+<!-- Kết thúc -->

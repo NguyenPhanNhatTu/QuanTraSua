@@ -1,0 +1,121 @@
+﻿@using Doan1.Models;
+@using System.Linq;
+@model PagedList.IPagedList<Doan1.Models.KhachHang>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .table {
+        background-color: aliceblue;
+    }
+</style>
+
+<div class="jumbotron"></div>
+
+<div class="jumbotron">
+    <h2 style="text-align: center" class="text-danger">Thông Tin Khách Hàng</h2>
+</div>
+@using (Html.BeginForm("Index", "KhachHangs", FormMethod.Get))
+{
+    <p>
+        Tên Khách Hàng: @Html.TextBox("SearchString", (string)ViewBag.searchValue) <input type="submit" value="Tìm kiếm" /> <input type="button" onclick="location.href = '/KhachHangs/Index'" name="Reset" value="Mặc định" />
+        @Html.Hidden("page", (object)ViewBag.page)
+        @Html.Hidden("sortProperty", (object)ViewBag.sortProperty)
+        @Html.Hidden("sortOrder", (object)ViewBag.sortOrder)
+        @Html.Hidden("size", (object)ViewBag.pageSize)
+    </p>
+}
+<p>
+    <input type="button" class="btn btn-danger" onclick="location.href = '/KhachHangs/Create'" value="Thêm Khách Hàng" />
+</p>
+
+
+
+<table class="table">
+
+    @Html.Raw(ViewBag.Headings)
+
+
+    <tr style="background-color:Highlight; text-align:center">
+
+        <th>
+            <div>Số Điện thoại</div>
+        </th>
+
+        <th>
+            <div>Tên Khách Hàng</div>
+        </th>
+        <th>
+            <div>Đã mua</div>
+        </th>
+        <th>
+            <div>Địa Chỉ</div>
+        </th>
+        <th>
+            <div>Email</div>
+        </th>
+        <th>
+            <div>Mật Khẩu</div>
+        </th>
+        <th></th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.SoDienThoai)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TenKH)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DaMua)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DiaChi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MatKhau)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.SoDienThoai }) |
+        @Html.ActionLink("Details", "Details", new { id = item.SoDienThoai }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.SoDienThoai })
+    </td>
+</tr>
+    }
+
+</table>
+
+
+<!-- Thêm mã phân trang -->
+<br />
+
+    <div style="text-align: center">
+        @using (Html.BeginForm("Index", "KhachHangs", FormMethod.Get))
+        {
+            <p>
+                Kích thước trang: @Html.DropDownList("size", (List<SelectListItem>)ViewBag.size, new { @onchange = "this.form.submit();" })
+            </p>
+
+            @Html.Hidden("page", (object)ViewBag.page)
+            @Html.Hidden("sortProperty", (object)ViewBag.sortProperty)
+            @Html.Hidden("sortOrder", (object)ViewBag.sortOrder)
+            @Html.Hidden("searchString", (object)ViewBag.searchValue)
+        }
+    </div>
+    <div style="text-align: center">
+        Trang: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    </div>
+<div style="text-align: center">
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, size = ViewBag.currentSize, sortProperty = ViewBag.sortProperty, sortOrder = ViewBag.SortOrder, searchString = ViewBag.searchValue }))
+</div>
+<!-- Kết thúc -->

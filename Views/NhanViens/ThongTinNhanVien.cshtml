@@ -1,0 +1,107 @@
+﻿@model Doan1.Models.NhanVien
+
+@{
+    ViewBag.Title = "ThongTinNhanVien";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron"></div>
+
+<div class="jumbotron">
+    <h2 style=" text-align: center" class="text-info">Chi Tiết Nhân Viên</h2>
+</div>
+
+<div>
+    <h4>Thông Tin Chi Tiết Nhân Viên</h4>
+    <hr />
+    <div class="agileits-top">
+        <div class="form-group">
+            <label class="control-label col-md-2 "> <b>Mã Nhân Viên</b></label>
+            <div class="col-md-10">
+                @Html.ValidationMessageFor(model => model.MaNV, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.MaNV)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 "> <b>Tên Nhân Viên</b></label>
+            <div class="col-md-10">
+                @Html.ValidationMessageFor(model => model.TenNV, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.TenNV)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 "> <b>Địa Chỉ</b></label>
+            <div class="col-md-10">
+                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.DiaChi)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 "> <b>Email</b></label>
+            <div class="col-md-10">
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.Email)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 "> <b>Số Điện Thoại</b></label>
+            <div class="col-md-10">
+                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.SDT)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 "> <b>Mật Khẩu</b></label>
+            <div class="col-md-10">
+                @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.MatKhau)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 "> <b>Tên Chi Nhánh</b></label>
+            <div class="col-md-10">
+                @Html.ValidationMessageFor(model => model.ChiNhanh.TenChiNhanh, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.ChiNhanh.TenChiNhanh)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" id="back" value="Back" class="btn btn-info" onclick="location.href='/TrangChu/TrangChu'" />
+            </div>
+        </div>
+    </div>
+</div>

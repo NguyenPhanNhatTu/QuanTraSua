@@ -1,0 +1,361 @@
+﻿@using Doan1.Models;
+@using System.Linq;
+@model PagedList.IPagedList<Doan1.Models.Menu>
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "MenuKhachHang";
+    Layout = "~/Views/LayoutMenu.cshtml";
+}
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="~/Scripts/MenuKhachHang.js"></script>
+
+</head>
+<style>
+    body {
+        background-image: url("/images/background.jpg");
+        background-size: 700px 700px;
+        background-repeat: no-repeat;
+        background-position: 0px 500px;
+    }
+
+    .modal-content {
+        background-image: url("/images/backgroundmon.png");
+    }
+
+    .anim {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+        .anim span {
+            display: flex;
+            width: 15%;
+            justify-content: space-between;
+        }
+
+    .add-item span {
+        border: 1px solid #B3B3B3;
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        line-height: 40px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+        .add-item span.change-qty.decrease {
+            border-radius: 4px 0 0 4px;
+        }
+
+        .add-item span.change-qty.increase {
+            border-radius: 0 4px 4px 0;
+        }
+
+    .quantiTy-increase {
+        border-right: none;
+        color: black;
+        padding: 6px 12px;
+        cursor: pointer;
+        border-left: 1px solid rgb(200,200,200);
+    }
+</style>
+
+<div style="padding-top:8em"></div>
+
+
+<div class="jumbotron" style="background-color:white;color:green;text-align:center">
+    <h1> <b>Menu </b></h1>
+    <div>
+        <img src="~/images/icon.png" />
+    </div>
+</div>
+<div class="jumbotron" style="background-color:white;color:green;text-align:center">
+    @if ((string)Session["QuyenUser"] != "2")
+    {
+        if ((string)Session["ChiNhanh"] == "2")
+        {
+            <button class="btn " style="background-color:white; border:none" onclick="location.href='@Url.Action("chinhanh1", "Menus")'">
+
+                Chi Nhánh 1
+            </button>
+            <button class="btn " style="background-color:darkgray; border:none" onclick="location.href='@Url.Action("chinhanh2", "Menus")'">
+
+                Chi Nhánh 2
+            </button>
+        }
+        else
+        {
+            <button class="btn " style="background-color:darkgray; border:none" onclick="location.href='@Url.Action("chinhanh1", "Menus")'">
+
+                Chi Nhánh 1
+            </button>
+            <button class="btn " style="background-color:white; border:none" onclick="location.href='@Url.Action("chinhanh2", "Menus")'">
+
+                Chi Nhánh 2
+            </button>
+        }
+    }
+    
+
+
+</div>
+<div class="container">
+    @using (Html.BeginForm("MenuKhachHang", "Menus", FormMethod.Get))
+    {
+        <p class="text-center">
+            <b>Tên món:</b> @Html.TextBox("SearchString", (string)ViewBag.searchValue) <input type="submit" value="Tìm kiếm" /> <input type="button" onclick="location.href = '/Menus/MenuKhachHang'" name="Reset" value="Mặc định" />
+            @Html.Hidden("page", (object)ViewBag.page)
+
+            @Html.Hidden("size", (object)ViewBag.pageSize)
+        </p>
+    }
+</div>
+<div class="container ">
+    @foreach (var item in Model)
+    {
+
+
+        <div class=" col-sm-3 col-xs-6  cilent-item text-center my-3">
+            <a class="item-wrapper">
+                <span class="badge-info">Món mới</span>
+
+                <img class="item-img img-responsive center-block lazy" alt="Trà sữa" src="@Url.Content("~/" + item.AnhMinhHoa)" width="170" height="170">
+                <h4>
+                    <b class="item-info">@Html.DisplayFor(modelItem => item.TenMon)</b>
+                </h4>
+
+                <div class="item-info" style="color:forestgreen">
+                    @Html.DisplayFor(modelItem => item.GiaTien)
+                    đ
+                </div>
+            </a>
+            <button id="themvaogiohang" data-toggle="modal" class="btn btn-default add-to-cart" data-IDMon="@item.MaMon">Đặt hàng</button>
+        </div>
+
+        <button id="test" href="#ChonMon" data-toggle="modal" hidden="hidden">test</button>
+
+    }
+
+
+</div>
+
+<!-- Thêm mã phân trang -->
+
+<div style="text-align: center">
+    @using (Html.BeginForm("MenuKhachHang", "Menus", FormMethod.Get))
+    {
+        <p>
+            Kích thước trang: @Html.DropDownList("size", (List<SelectListItem>)ViewBag.size, new { @onchange = "this.form.submit();" })
+        </p>
+
+        @Html.Hidden("page", (object)ViewBag.page)
+
+        @Html.Hidden("searchString", (object)ViewBag.searchValue)
+    }
+</div>
+<div style="text-align: center">
+    Trang: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+</div>
+<div style="text-align: center">
+    @Html.PagedListPager(Model, page => Url.Action("MenuKhachHang", new { page, size = ViewBag.currentSize, sortProperty = ViewBag.sortProperty, sortOrder = ViewBag.SortOrder, searchString = ViewBag.searchValue }))
+</div>
+
+
+
+<!-- ############################ Chọn món ############################## -->
+
+<div class="modal fade" id="ChonMon">
+
+
+    <div class="modal-dialog" id="load">
+        @{
+            Menu menu = new Menu();
+            menu = Session["Mon"] as Menu;
+
+        }
+        <div class="modal-content">
+            <div class="modal-header">
+                @{
+                    if (menu != null)
+                    {
+                        <h4 class="modal-title" id="TenMon">@menu.TenMon</h4>
+
+                    }
+                }
+            </div>
+            <form method="post" action="/Menus/DatMon" id="ChonMon">
+                <div class="modal-body ">
+
+
+
+                    @if (menu != null)
+                    {
+                        <img src="@Url.Content("~/" + menu.AnhMinhHoa)" width="170" height="170" />
+                    }
+                    <div id="datmon_here">
+                        @{
+                            if (menu != null)
+                            {
+                                <label id="GiaTien"> @menu.GiaTien vnđ  </label>
+                            }
+                        }
+                        <div>
+                            <label>Size</label>
+
+                        </div>
+                        <div class="wthree-text">
+
+                            <div class="anim">
+                                <span>
+                                    <input id="radioQL" type="radio" class="radio" name="size" required="" value="M">
+                                    <label style="color:black">Size M</label>
+                                </span>
+                                <span>
+                                    <input id="radioNV" type="radio" name="size" class="radio" required="" value="L">
+                                    <label style="color:black">Size L</label>
+                                </span>
+                            </div>
+                        </div>
+                        <div>
+                            <label>Đường</label>
+
+                        </div>
+                        <div class="wthree-text">
+
+                            <div class="anim">
+                                <span>
+                                    <input id="radioQL" type="radio" class="radio" name="Duong" required="" value="50">
+                                    <label style="color:black">50%</label>
+                                </span>
+                                <span>
+                                    <input id="radioNV" type="radio" name="Duong" class="radio" required="" value="75">
+                                    <label style="color:black">75%</label>
+
+                                </span>
+                                <span>
+                                    <input id="radioNV" type="radio" name="Duong" class="radio" required="" value="100">
+                                    <label style="color:black">100%</label>
+
+                                </span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label>Đá</label>
+
+                        </div>
+                        <div class="wthree-text">
+
+                            <div class="anim">
+                                <span>
+                                    <input id="radioQL" type="radio" class="radio" name="Da" required="" value="50">
+
+                                    <label style="color:black">50%</label>
+                                </span>
+                                <span>
+                                    <input id="radioNV" type="radio" name="Da" class="radio" required="" value="75">
+
+                                    <label style="color:black">75%</label>
+                                </span>
+                                <span>
+                                    <input id="radioNV" type="radio" name="Da" class="radio" required="" value="100">
+
+                                    <label style="color:black">100%</label>
+                                </span>
+                            </div>
+                        </div>
+
+                        <label>Số lượng</label>
+                        <input type="text" class="form-control" name="SoLuong" id="soluong" />
+                        <div id="err_DatMon">
+                        </div>
+                        @*<div class="item-info__quantity">
+                                <label for="qty">Số lượng</label>
+                                <div class="add-item">
+                                    <span id="desc" class="quantiTy-decrease" data-quantity="@quantity">-</span>
+                                    <span class="quantity ng-binding change-qty">@quantity</span>
+                                    <button id="inc" class="quantiTy-increase" data-quantity="@quantity">+</button>
+                                </div>
+                            </div>*@
+                        <br />
+                    </div>
+
+                    <br />
+                    <div id="waiting" style="display: none;">
+                        <div class="progress progress-striped active">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="submit" class="btn btn-primary" id="Send">Đặt hàng</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
+</div><!-- /.modal -->
+<!-- ===================================Ajax Đặt hàng=========================-->
+<script>
+    $("#ChonMon").submit(function (e) {
+        if ($("#soluong").val() == '') {
+            $('#err_DatMon').html('<div class="alert alert-danger">Chưa chọn số lượng</div>');
+            $("#soluong").focus();
+            return false;
+        }
+        else if ((Number)($("#soluong").val()) <= 100 && (Number)($("#soluong").val()) >= 1) {
+            var data = {
+                Size: $('input[name=size]:checked').val(),
+                Duong: $('input[name=Duong]:checked').val(),
+                Da: $('input[name=Da]:checked').val(),
+                soluong: $("#soluong").val()
+
+            };
+            $.ajax({
+                url: '/Menus/DatMon',
+                type: 'POST',
+                async: true,
+                data: data,
+                success: function (KiemTra) {
+                    //alert(msg);
+                    if (KiemTra == 'false') {
+                        $('#err_DatMon').html('<div class="alert alert-danger">Đặt món thất bại</div>');
+
+                        return false;
+                    }
+
+
+                    else {
+                        $('#err_DatMon').html('<div class="alert alert-success"><strong>Đã thêm vào giỏ hàng</strong></div>');
+                        location.reload();
+                        return true;
+
+
+                    }
+                }
+            });
+            return false;
+        }
+        else {
+            $('#err_DatMon').html('<div class="alert alert-danger">Nhập số 1-100</div>');
+            $("#soluong").focus();
+            return false;
+        }
+
+    });
+    //Load wating bar
+    $(document).ajaxStart(function () {
+        $("#waiting").show();
+    }).ajaxStop(function () {
+        $("#waiting").hide();
+    });
+</script>
+<!-- Kết thúc -->

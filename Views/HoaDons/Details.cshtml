@@ -1,0 +1,176 @@
+﻿@model Doan1.Models.HoaDon
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron"></div>
+
+<div class="jumbotron">
+    <h2 style=" text-align: center" class="text-info">Chi Tiết Hóa Đơn</h2>
+</div>
+
+
+<div class="container">
+    <div class="row">
+
+        @if (Model.SoDienThoai != null)
+        {
+            <div class="col">
+
+                <p><b>Đơn hàng: </b> Online</p>
+                <p>
+                    <b>Mã đơn: </b> @Html.DisplayFor(model => model.MaHD)
+                </p>
+                <p>
+                    <b>Khách Hàng: </b> @Html.DisplayFor(model => model.KhachHang.TenKH)
+                </p>
+
+                <p>
+                    <b>Số điện thoại: </b> @Html.DisplayFor(model => model.KhachHang.SoDienThoai)
+                </p>
+
+                <p>
+                    <b>Địa chỉ giao: </b> @Html.DisplayFor(model => model.KhachHang.DiaChi)
+                </p>
+            </div>
+            <div class="col">
+
+                <p>
+
+                    <b>Nhân viên nhận đơn: </b> @Html.DisplayFor(model => model.NhanVien.MaNV) | @Html.DisplayFor(model => model.NhanVien.TenNV)
+                </p>
+                <p>
+                    <b>Chi Nhánh: </b> @Html.DisplayFor(model => model.ChiNhanh.TenChiNhanh)
+                </p>
+
+                <p>
+                    <b>Ngày bán: </b> @Html.DisplayFor(model => model.NgayBan)
+                </p>
+            </div>
+
+        }
+        else
+        {
+            <div class="col">
+
+                <p>
+                    <b>Đơn hàng: </b> Tại quán
+                </p>
+                <p>
+                    <b>Mã đơn: </b> @Html.DisplayFor(model => model.MaHD)
+                </p>
+                <p>
+
+                    <b>Nhân viên bán: </b> @Html.DisplayFor(model => model.NhanVien.MaNV) | @Html.DisplayFor(model => model.NhanVien.TenNV)
+                </p>
+            </div>
+
+            <div class="col">
+                <p>
+                    <b>Chi Nhánh: </b> @Html.DisplayFor(model => model.ChiNhanh.TenChiNhanh)
+                </p>
+
+                <p>
+                    <b>Ngày bán: </b> @Html.DisplayFor(model => model.NgayBan)
+                </p>
+            </div>
+        }
+
+    </div>
+
+</div>
+<div class="jumbotron container" style="background-color:white">
+    <h4 style=" text-align: center"> <b>@Html.DisplayFor(model => model.TrangThai) </b></h4>
+</div>
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Mã Món
+                </th>
+                <th>
+
+                    Tên món
+                </th>
+                <th>
+                    Hình ảnh
+                </th>
+                <th>
+                    Size
+                </th>
+                <th>
+                    Đường(%)
+                </th>
+                <th>
+                    Đá(%)
+                </th>
+
+                <th>
+                    số lượng
+                </th>
+                <th>
+                    Đơn giá(vnđ)
+                </th>
+                <th>
+                    Giá(vnđ)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ChiTietHoaDons)
+            {
+
+                <tr style="width:200px;height:100px;">
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.MaMon)
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.Menu.TenMon)
+                    </td>
+                    <td>
+                        <img src="@Url.Content("~/" + item.Menu.AnhMinhHoa)" width="70" height="70" />
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Size)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Duong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Da)
+                    </td>
+                    <td>
+                        <div>
+                            x @Html.DisplayFor(modelItem => item.SoLuong)
+                        </div>
+                    </td>
+
+
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.Menu.GiaTien)
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.Gia)
+                    </td>
+
+
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
+<div class="jumbotron container" style="background-color:white">
+    <h4 style=" text-align: right ;color:red"> <b> Tổng tiền thanh toán: @Html.DisplayFor(model => model.TongGia) vnđ </b></h4>
+</div>
+<div class="form-group" style="text-align:center">
+    <input type="button" id="back" value="Back" class="btn btn-info" onclick="location.href='/HoaDons/Index'" />
+</div>

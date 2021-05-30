@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Doan1.Models.LienHe>
+@{
+    ViewBag.Title = "LienHe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="padding-top:6em"></div>
+<div style="background-color:transparent">
+    @*<img src="~/images/lienhe.jpg" alt="news image" class="img-fluid" />*@
+    <h1 style="text-align: center" class="text-info"> Thông Tin Liên Hệ</h1>
+    <div style="color: brown; text-align: center;font-size:24px">
+        @foreach (var item in Model)
+        {
+            <p> Tên Chính Thức: Quản lý chuỗi cửa hàng trà sữa  </p>
+            <p> Trụ Sở Chính: @Html.DisplayFor(modelItem => item.DiaChi)</p>
+            <p> Chủ Sở Hữu: Nhóm 05  </p>
+            <p> Điện Thoại: @Html.DisplayFor(modelItem => item.SoDienThoai) </p>
+            <p> Email: @Html.DisplayFor(modelItem => item.Email)  </p>
+            <p> FaceBook:@Html.DisplayFor(modelItem => item.FaceBook) </p>
+        }
+    </div>
+    <div  style="text-align:center">
+        @if ((String)Session["QuyenUser"] == "1")
+        {
+            <p>
+                <input style="text-align:center" type="button" class="btn btn-danger" onclick="location.href = '/LienHes/Edit'" value="Chỉnh sửa thông tin liên hệ" />
+            </p>
+        }
+
+    </div>
+</div>
+<div style="padding-bottom:10em"></div>

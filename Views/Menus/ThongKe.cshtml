@@ -1,0 +1,332 @@
+﻿@using Doan1.Models;
+@model IEnumerable<Doan1.Models.Menu>
+@{
+    ViewBag.Title = "ThongKe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="padding-top:10em"></div>
+
+
+<body>
+    <script src="~/Scripts/accessibility.js"></script>
+    <script src="~/Scripts/export-data.js"></script>
+    <script src="~/Scripts/exporting.js"></script>
+    <script src="~/Scripts/highcharts.js"></script>
+
+    <div style="text-align:center" class="container">
+        @if ((string)Session["ThongKe"] == "1")
+        {
+            int soLuongTraSua1 = ViewBag.sLTS1;
+            int soLuongTra1 = ViewBag.sLT1;
+            int soLuongTopping1 = ViewBag.sLTO1;
+            double doanhThuCN1 = ViewBag.doanhthuCN1;
+            <button class="btn " style="background-color:darkgrey; border:none" onclick="location.href='@Url.Action("ThongKe1", "Menus")'">
+
+                Chi Nhánh 1
+            </button>
+            <button class="btn " style="background-color:white; border:none" onclick="location.href='@Url.Action("ThongKe2", "Menus")'">
+
+                Chi Nhánh 2
+            </button>
+            <div style="background-color:transparent">
+                <h2 style="text-align: center" class="text-danger"> Top Sản Phẩm Bán Chạy Nhất Chi Nhánh 1</h2>
+            </div>
+            <div class="jumbotron" align="left" style="background-color:transparent">
+                <font size="4" color="red">
+                    Tổng Số Doanh Thu:@doanhThuCN1 đ
+
+                </font>
+            </div>
+            <table class="table">
+                <tr>
+                <tr style="background-color:Highlight; text-align:center">
+
+                    <th>
+                        <div>Mã Món</div>
+                    </th>
+
+                    <th>
+                        <div>Tên Món</div>
+                    </th>
+                    <th>
+                        <div>Loại</div>
+                    </th>
+                    <th>
+                        <div>Giá Tiền</div>
+                    </th>
+                    <th>
+                        <div>Chi Nhánh</div>
+                    </th>
+                    <th>
+                        <div>Ảnh</div>
+                    </th>
+                    <th>
+                        <div>Số Lượng Đã Bán</div>
+                    </th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaMon)
+
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenMon)
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Loai)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GiaTien)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ChiNhanh.TenChiNhanh)
+                        </td>
+                        <td>
+                            <div style="width:200px;height:100px;">
+                                @Html.Image("../" + item.AnhMinhHoa, "alt", "100", "100")
+                            </div>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SoLuongDaBan)
+                        </td>
+
+                    </tr>
+                }
+
+            </table>
+            <div class="jumbotron">
+                <figure class="highcharts-figure">
+                    <div id="container"></div>
+                    <p class="highcharts-description">
+
+                    </p>
+                </figure>
+            </div>
+
+
+            <script>
+
+                Highcharts.chart('container', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Loại Món Bán Nhiều Nhất Ở Chi Nhánh 1',
+
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
+                    },
+                    accessibility: {
+                        point: {
+                            valueSuffix: '%'
+                        }
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Loại',
+                        colorByPoint: true,
+                        data: [{
+                            name: 'Trà Sữa',
+                            y: @soLuongTraSua1,
+
+                        }, {
+                            name: 'Trà',
+                            y: @soLuongTra1
+                        }, {
+                            name: 'Món Khác',
+                            y: @soLuongTopping1
+                        }]
+                    }]
+                });
+
+            </script>
+
+        }
+
+        else if ((string)Session["ThongKe"] == "2")
+        {
+            <button class="btn " style="background-color:white; border:none" onclick="location.href='@Url.Action("ThongKe1", "Menus")'">
+
+                Chi Nhánh 1
+            </button>
+            <button class="btn " style="background-color:darkgrey; border:none" onclick="location.href='@Url.Action("ThongKe2", "Menus")'">
+                Chi Nhánh 2
+            </button>
+
+            int soLuongTraSua1 = ViewBag.sLTS1;
+            int soLuongTra1 = ViewBag.sLT1;
+            int soLuongTopping1 = ViewBag.sLTO1;
+            double doanhThuCN1 = ViewBag.doanhthuCN1;
+
+            <div style="background-color:transparent">
+                <h2 style="text-align: center" class="text-danger"> Top Sản Phẩm Bán Chạy Nhất Chi Nhánh 2</h2>
+            </div>
+            <div class="jumbotron" align="left" style="background-color:transparent">
+                <font size="4" color="red">
+                    Tổng Số Doanh Thu:@doanhThuCN1 đ
+
+                </font>
+            </div>
+            <table class="table">
+                <tr>
+                <tr style="background-color:Highlight; text-align:center">
+
+                    <th>
+                        <div>Mã Món</div>
+                    </th>
+
+                    <th>
+                        <div>Tên Món</div>
+                    </th>
+                    <th>
+                        <div>Loại</div>
+                    </th>
+                    <th>
+                        <div>Giá Tiền</div>
+                    </th>
+                    <th>
+                        <div>Chi Nhánh</div>
+                    </th>
+                    <th>
+                        <div>Ảnh</div>
+                    </th>
+                    <th>
+                        <div>Số Lượng Đã Bán</div>
+                    </th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaMon)
+
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenMon)
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Loai)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GiaTien)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ChiNhanh.TenChiNhanh)
+                        </td>
+                        <td>
+                            <div style="width:200px;height:100px;">
+                                @Html.Image("../" + item.AnhMinhHoa, "alt", "100", "100")
+                            </div>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SoLuongDaBan)
+                        </td>
+
+                    </tr>
+                }
+
+            </table>
+            <div class="jumbotron">
+                <figure class="highcharts-figure">
+                    <div id="container"></div>
+                    <p class="highcharts-description">
+
+                    </p>
+                </figure>
+            </div>
+
+
+            <script>
+
+                Highcharts.chart('container', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Loại Món Bán Nhiều Nhất Ở Chi Nhánh 2',
+
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
+                    },
+                    accessibility: {
+                        point: {
+                            valueSuffix: '%'
+                        }
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Loại',
+                        colorByPoint: true,
+                        data: [{
+                            name: 'Trà Sữa',
+                            y: @soLuongTraSua1,
+
+                        }, {
+                            name: 'Trà',
+                            y: @soLuongTra1
+                        }, {
+                            name: 'Món Khác',
+                            y: @soLuongTopping1
+                        }]
+                    }]
+                });
+
+            </script>
+        }
+        else
+        {
+            <button class="btn " style="background-color:white; border:none" onclick="location.href='@Url.Action("ThongKe1", "Menus")'">
+
+                Chi Nhánh 1
+            </button>
+            <button class="btn " style="background-color:white; border:none" onclick="location.href='@Url.Action("ThongKe2", "Menus")'">
+
+                Chi Nhánh 2
+            </button>
+        }
+
+
+    </div>
+
+
+</body>
+
+
+
