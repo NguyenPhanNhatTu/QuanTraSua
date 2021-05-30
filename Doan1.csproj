@@ -317,6 +317,14 @@
     <Compile Include="Models\QuanLy.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Singleton\LuaChon.cs" />
+    <Compile Include="Models\StatePattern\ChoLayHang.cs" />
+    <Compile Include="Models\StatePattern\ChoXacNhan.cs" />
+    <Compile Include="Models\StatePattern\ContextState.cs" />
+    <Compile Include="Models\StatePattern\DaGiao.cs" />
+    <Compile Include="Models\StatePattern\DaHuy.cs" />
+    <Compile Include="Models\StatePattern\DangGiao.cs" />
+    <Compile Include="Models\StatePattern\State.cs" />
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

@@ -18,6 +18,8 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.IO;
 using System.Configuration;
+using Doan1.Models.StatePattern;
+using Doan1.Models.Singleton;
 
 namespace Doan1.Controllers
 {
@@ -175,43 +177,43 @@ namespace Doan1.Controllers
 
         public ActionResult btnChoXacNhan(object sender, EventArgs e)
         {
-
-            Session["PhanLoai"] = "2";
+            
+            Session["PhanLoai"] = LuaChon.Instance.ChoXacNhan() ;
             return RedirectToAction("Index", "HoaDons");
 
         }
         public ActionResult btnTatCa(object sender, EventArgs e)
         {
 
-            Session["PhanLoai"] = "1";
+            Session["PhanLoai"] = LuaChon.Instance.TatCa();
             return RedirectToAction("Index", "HoaDons");
 
         }
         public ActionResult btnChoLayHang(object sender, EventArgs e)
         {
 
-            Session["PhanLoai"] = "3";
+            Session["PhanLoai"] = LuaChon.Instance.ChoLayHang();
             return RedirectToAction("Index", "HoaDons");
 
         }
         public ActionResult btnDangGiao(object sender, EventArgs e)
         {
 
-            Session["PhanLoai"] = "4";
+            Session["PhanLoai"] = LuaChon.Instance.DangGiao();
             return RedirectToAction("Index", "HoaDons");
 
         }
         public ActionResult btnDaGiao(object sender, EventArgs e)
         {
 
-            Session["PhanLoai"] = "5";
+            Session["PhanLoai"] = LuaChon.Instance.DaGiao();
             return RedirectToAction("Index", "HoaDons");
 
         }
         public ActionResult btnDaHuy(object sender, EventArgs e)
         {
 
-            Session["PhanLoai"] = "6";
+            Session["PhanLoai"] = LuaChon.Instance.DaHuy();
             return RedirectToAction("Index", "HoaDons");
 
         }
@@ -391,59 +393,46 @@ namespace Doan1.Controllers
         }
         public ActionResult xacnhan(string iddonhang)
         {
-            if((string)Session["QuyenUser"]=="1" || (string)Session["QuyenUser"] == "2")
-            {
-                HoaDon hd = db.HoaDons.Find(iddonhang);
-                hd.TrangThai = "Chờ lấy hàng";
-                db.SaveChanges();
-            }
+            //if((string)Session["QuyenUser"]=="1" || (string)Session["QuyenUser"] == "2")
+            //{
+            //    HoaDon hd = db.HoaDons.Find(iddonhang);
+            //    hd.TrangThai = "Chờ lấy hàng";
+            //    db.SaveChanges();
+            //}
+            ContextState context = new ContextState();
+            context.setState(new ChoLayHang());
+            context.applyState(iddonhang);
+
             return RedirectToAction("Index");
 
 
         }
         public ActionResult layhang(string iddonhang)
         {
-            if ((string)Session["QuyenUser"] == "1" || (string)Session["QuyenUser"] == "2")
-            {
-                HoaDon hd = db.HoaDons.Find(iddonhang);
-                hd.TrangThai = "Đang giao";
-                db.SaveChanges();
-            }
-            
+            ContextState context = new ContextState();
+            context.setState(new DangGiao());
+            context.applyState(iddonhang);
+
             return RedirectToAction("Index");
         }
         public ActionResult dagiao(string iddonhang)
         {
-            if ((string)Session["QuyenUser"] == "3")
-            {
-                HoaDon hd = db.HoaDons.Find(iddonhang);
-                hd.TrangThai = "Đã giao";
-                List<ChiTietHoaDon> chitiet = (from l in db.ChiTietHoaDons
-                                              where l.MaHD == hd.MaHD
-                                              select l).ToList();
-                foreach (var item in chitiet)
-                {
-                    Menu menu = (from a in db.Menus
-                                where a.MaMon == item.MaMon
-                                select a).SingleOrDefault();
-                    int sl = int.Parse(item.SoLuong.ToString());
-                    menu.SoLuongDaBan = menu.SoLuongDaBan + sl;
-                    db.SaveChanges();
-                }
-                db.SaveChanges();
-            }
+            ContextState context = new ContextState();
+            context.setState(new DaGiao());
+            context.applyState(iddonhang);
             return RedirectToAction("Index");
 
         }
         public ActionResult huy(string iddonhang)
         {
-            
-                HoaDon hd = db.HoaDons.Find(iddonhang);
-                hd.TrangThai = "Đã hủy";
-                db.SaveChanges();
-            
+
+            ContextState context = new ContextState();
+            context.setState(new DaHuy());
+            context.applyState(iddonhang);
+
             return RedirectToAction("Index");
 
         }
+        
     }
 }
